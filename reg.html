@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -18,6 +19,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
   </head>
+
   <body class="g-sidenav-show bg-gray-200">
     <div class="container p-3 my-3">
       <form id="form" method="post">
@@ -29,6 +31,7 @@
         <div class="alert alert-warning">
           <strong class="text-white">Data Diri</strong>
         </div>
+
         <div class="row">
           <div class="col-sm-7">
             <label for="" class="col-form-label me-3">Nama Lengkap :</label>
@@ -36,13 +39,15 @@
               <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Lengkap" />
             </div>
           </div>
+
           <div class="col-sm-5">
             <label for="" class="col-form-label me-3">Nomor Identitas :</label>
             <div class="input-group input-group-outline">
-              <input type="text" name="nik" class="form-control" placeholder="Masukan Nomor NIK / NIM" />
+              <input type="text" name="nim" class="form-control" placeholder="Masukan Nomor NIK / NIM" />
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Tempat Lahir :</label>
@@ -50,12 +55,14 @@
               <input type="text" name="tempat_lahir" class="form-control" placeholder="Masukan Tempat Lahir" />
             </div>
           </div>
+
           <div class="col-sm-3">
             <label for="" class="col-form-label me-3">Tanggal Lahir :</label>
             <div class="input-group input-group-outline">
               <input type="date" name="tanggal_lahir" class="form-control" />
             </div>
           </div>
+
           <div class="col-sm-5">
             <label for="" class="col-form-label me-3">Jenis Kelamin :</label>
             <div class="input-group input-group-outline">
@@ -94,14 +101,14 @@
               </select>
             </div>
           </div>
+
           <div class="col-sm-5">
             <label for="inputGroupFile02" class="col-form-label me-3">Upload Foto 3x6</label>
             <div class="input-group input-group-outline">
               <input type="file" name="nama_ibu" class="form-control" placeholder="Foto 3x6" />
             </div>
           </div>
-          
-          
+
         </div>
         <div class="row">
           
@@ -111,15 +118,14 @@
               <input type="email" name="email" class="form-control" placeholder="Masukan Email" />
             </div>
           </div>
-          
-          
+
           <div class="col-sm-3">
             <label for="" class="col-form-label me-3">Password :</label>
             <div class="input-group input-group-outline">
               <input type="password" name="password" class="form-control" placeholder="Isi Password" />
             </div>
           </div>
-          
+
           <div class="col-sm-5">
             <label for="" class="col-form-label me-3">No Telp :</label>
             <div class="input-group input-group-outline">
@@ -130,10 +136,10 @@
         <!-- END DATA DIRI -->
 
         <!-- DATA ORTU -->
-
         <div class="alert alert-warning mt-3">
           <strong class="text-white">Data Orang Tua / Wali </strong>
         </div>
+
         <div class="row">
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Nama Orang Tua / Wali :</label>
@@ -141,6 +147,7 @@
               <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Orang Tua / Wali" />
             </div>
           </div>
+
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Nomor Telp Orang Tua / Wali :</label>
             <div class="input-group input-group-outline">
@@ -155,13 +162,13 @@
             </div>
           </div>
         </div>
-
         <!-- END DATA ORTU -->
 
         <!-- DATA ALAMAT -->
         <div class="alert alert-warning mt-4">
           <strong class="text-white">Data Alamat Asal</strong>
         </div>
+
         <div class="row">
           <div class="col-sm-6">
             <label for="" class="col-form-label me-3">Alamat:</label>
@@ -169,6 +176,7 @@
               <textarea class="form-control" name="alamat" rows="1" id="alamat"></textarea>
             </div>
           </div>
+
           <div class="col-sm-6">
             <label for="" class="col-form-label me-3">Kode Pos:</label>
             <div class="input-group input-group-outline">
@@ -176,6 +184,7 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Provinsi:</label>
@@ -195,6 +204,7 @@
               </select>
             </div>
           </div>
+
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Kabupaten:</label>
             <div class="input-group input-group-outline">
@@ -203,6 +213,7 @@
               </select>
             </div>
           </div>
+
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Kecamatan:</label>
             <div class="input-group input-group-outline">
@@ -212,6 +223,7 @@
             </div>
           </div>
         </div>
+
         <script>
           $("#provinsi").change(function () {
             // variabel dari nilai combo provinsi
@@ -251,6 +263,7 @@
         <div class="alert alert-warning mt-3" >
           <strong class="text-white">Data Pendidikan</strong>
         </div>
+
         <div class="row">
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Pendidikan Terakhir:</label>
@@ -262,6 +275,7 @@
               </select>
             </div>
           </div>
+
           <div class="col-sm-4">
             <label for="" class="col-form-label me-3">Nama Sekolah:</label>
             <div class="input-group input-group-outline"">
@@ -345,10 +359,9 @@
                 <option value="TANIA">M - Keuangan Islam</option>
               </select>
             </div>
-
-          <!-- END DATA JURUSAN -->
-
         </div>
+        <!-- END DATA JURUSAN -->
+
         <div class="row">
           <div class="col-sm-5 mt-4">
             <button type="submit" name="Submit" id="Submit" class="btn btn-success me-5">Daftar</button>
@@ -359,11 +372,11 @@
     </div>
 
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/popper.min.js"></script>
-    <script src="./assets/js/core/bootstrap.min.js"></script>
-    <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
-    <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="assets/js/plugins/chartjs.min.js"></script>
     <script>
       var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -626,6 +639,6 @@
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/material-dashboard.min.js?v=3.0.0"></script>
+    <script src="assets/js/material-dashboard.min.js?v=3.0.0"></script>
   </body>
 </html>

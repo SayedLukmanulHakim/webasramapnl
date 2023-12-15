@@ -82,7 +82,7 @@
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0 text-center">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
@@ -112,7 +112,7 @@
                       </td>
                       <td>
                         <!-- Aksi -->
-                        <a href="#" class="btn btn-sm btn-warning">
+                        <a href="edit_kamar.html" class="btn btn-sm btn-warning">
                           <i class="material-icons">edit</i>
                           edit
                         </a>

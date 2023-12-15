@@ -1,4 +1,3 @@
-<?php include 'proses/koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="./assets/img/logo.png" />
-  <title>Data Pembayaran</title>
+  <title>Add Pengelola</title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -24,10 +23,127 @@
 
 <body class="g-sidenav-show bg-gray-200">
 
-  <!-- SIDEBAR  -->
-  <?php include 'sidebar.php'; ?>
-  <!-- SIDEBAR -->
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <?php if (isset($_GET['status']) && $_GET['status'] == 'berhasil') { ?>
+
+    <script>
+      Swal.fire({
+        title: "Berhasil",
+        text: "Data berhasil ditambahkan",
+        icon: "success"
+      }).then((result) => {
+        window.location.href = 'add_pengelola.php';
+      });
+    </script>
+  <?php } else if (isset($_GET['status']) && $_GET['status'] == 'gagal') { ?>
+
+      <script>
+        Swal.fire({
+          title: "Gagal",
+          text: "Data gagal ditambahkan",
+          icon: "error"
+        }).then((result) => {
+          window.location.href = 'add_pengelola.php';
+        });
+      </script>
+
+  <?php } ?>
+
+
+  <aside
+    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
+    id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+        aria-hidden="true" id="iconSidenav"></i>
+      <a class="navbar-brand m-0" href="#">
+        <div class="row">
+          <div class="col-3">
+            <img src="https://shanibacreative.com/wp-content/uploads/2020/06/membuat-foto-profil-yang-bagus.jpg"
+              class="navbar-brand-img h-100" alt="main_logo" style="aspect-ratio: 1/1; object-fit: cover" />
+          </div>
+          <div class="col">
+            <span class="ms-1 font-weight-bold text-white">Ibnu Katsir</span>
+            <br />
+            <span class="ms-1 text-white">1231213123</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2" />
+    <div class="collapse navbar-collapse w-auto max-height-vh-100" style="height: 100%" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="index.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="mahasiswa.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">Mahasiswa</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="dt_kamar.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">king_bed</i>
+            </div>
+            <span class="nav-link-text ms-1">Data Kamar</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="dt_pembayaran.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">payments</i>
+            </div>
+            <span class="nav-link-text ms-1">Data Pembayaran</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="konfirmasi.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">confirmation_number</i>
+            </div>
+            <span class="nav-link-text ms-1">Konfirmasi Pembayaran</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white active bg-gradient-warning" href="kelola_user.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">manage_accounts</i>
+            </div>
+            <span class="nav-link-text ms-1">Kelola User</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="profiladm.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person</i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">login</i>
+            </div>
+            <span class="nav-link-text ms-1">Sign In</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -36,9 +152,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Data Pembayaran</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Kelola User</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Data Pembayaran</h6>
+          <h6 class="font-weight-bolder mb-0">Add Pengelola</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -75,51 +191,56 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-warning shadow-primary border-radius-lg pt-4 pb-3">
                 <div class="d-flex justify-content-between">
-                  <h6 class="text-white text-capitalize ps-3">Data Pembayaran</h6>
+                  <h6 class="text-white text-capitalize ps-3">Add Pengelola</h6>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 text-center">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan/Tahun</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-center">
-                    <tr>
-                      <td>
-                        <!-- No -->1
-                      </td>
-                      <td>
-                        <!-- Nama -->1
-                      </td>
-                      <td>
-                        <!-- Bulan / Tahun -->1
-                      </td>
-                      <td>
-                        <!-- Tagihan -->1
-                      </td>
-                      <td>
-                        <!-- Tagihan -->1
-                      </td>
-                      <td>
-                        <!-- Aksi -->
-                        <a href="#" class="btn btn-sm btn-warning">
-                          <i class="material-icons">edit</i>
-                          edit
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="card-body px-0 pb-3 col-md-9">
+              <form action="proses/add_pengelola.php" method="GET">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Nama</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Nama</label>
+                    <input type="text" name="nama" class="form-control" onfocus="focused(this)" required
+                      onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">NIP</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">NIP</label>
+                    <input type="number" name="nip" class="form-control" onfocus="focused(this)" required
+                      onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Username</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Username</label>
+                    <input type="text" name="username" class="form-control" onfocus="focused(this)" required
+                      onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Password</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" onfocus="focused(this)" required
+                      onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+                <div class="m-3 mt-5 d-flex">
+                  <input type="submit" class="btn btn-info">
+                  <div class="mx-3"></div>
+                  <a href="kelola_user.php" class="btn btn-danger">CANCEL</a>
+                </div>
+
+              </form>
             </div>
           </div>
         </div>

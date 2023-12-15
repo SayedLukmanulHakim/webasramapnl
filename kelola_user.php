@@ -110,11 +110,11 @@
                           </b>
                         </td>
                         <td>
-                          <!-- ID -->1
+                          <!-- ID -->
                           <?php echo $row['id_user']; ?>
                         </td>
                         <td>
-                          <!-- Nama -->1
+                          <!-- Nama -->
                           <?php echo $row['nama_user']; ?>
                         </td>
                         <td>
@@ -135,7 +135,7 @@
                         </td>
                         <td>
                           <!-- Aksi -->
-                          <a href="#" class="btn btn-sm btn-warning">
+                          <a href="edit_pengelola.php" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
                             edit
                           </a>

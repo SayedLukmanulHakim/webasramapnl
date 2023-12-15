@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="./assets/img/logo.png" />
-  <title>index</title>
+  <title>Registrasi Member Asrama</title>
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
   <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
@@ -24,7 +23,7 @@
 
 <body class="g-sidenav-show bg-gray-200">
   <div class="container p-3 my-3">
-    <form id="form" method="post">
+    <form id="form" action="proses/proses_reg.php" method="post">
 
       <!-- DATA DIRI -->
       <div class="alert alert-dark text-center">
@@ -153,8 +152,7 @@
         <div class="col-sm-4">
           <label for="" class="col-form-label me-3">Nomor Telp Orang Tua / Wali :</label>
           <div class="input-group input-group-outline">
-            <input type="tel" name="nomor_ortu" class="form-control"
-              placeholder="Masukan Nomor Telephone Orang Tua / Wali" />
+            <input type="tel" name="nomor_ortu" class="form-control" placeholder="Masukan Nomor Telephone Orang Tua / Wali" />
           </div>
         </div>
 
@@ -196,6 +194,7 @@
 
             </select>
           </div>
+
         </div>
 
         <div class="col-sm-4">
@@ -266,7 +265,7 @@
     <div class="col-sm-4">
       <label for="" class="col-form-label me-3">Semester</label>
       <div class="input-group input-group-outline">
-        <select class="form-control" name="Semester">
+        <select class="form-control" name="semester">
           <option value="TIK">Semester 1</option>
           <option value="TIK">Semester 2</option>
           <option value="TIK">Semester 3</option>
@@ -335,6 +334,8 @@
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
   <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
@@ -342,18 +343,16 @@
       type: "bar",
       data: {
         labels: ["M", "T", "W", "T", "F", "S", "S"],
-        datasets: [
-          {
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderRadius: 4,
-            borderSkipped: false,
-            backgroundColor: "rgba(255, 255, 255, .8)",
-            data: [50, 20, 10, 22, 50, 10, 40],
-            maxBarThickness: 6,
-          },
-        ],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "rgba(255, 255, 255, .8)",
+          data: [50, 20, 10, 22, 50, 10, 40],
+          maxBarThickness: 6,
+        }, ],
       },
       options: {
         responsive: true,
@@ -424,23 +423,21 @@
       type: "line",
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+          maxBarThickness: 6,
+        }, ],
       },
       options: {
         responsive: true,
@@ -508,22 +505,20 @@
       type: "line",
       data: {
         labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
+        datasets: [{
+          label: "Mobile apps",
+          tension: 0,
+          borderWidth: 0,
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(255, 255, 255, .8)",
+          pointBorderColor: "transparent",
+          borderColor: "rgba(255, 255, 255, .8)",
+          borderWidth: 4,
+          backgroundColor: "transparent",
+          fill: true,
+          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          maxBarThickness: 6,
+        }, ],
       },
       options: {
         responsive: true,

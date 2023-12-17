@@ -86,6 +86,7 @@
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">NIM</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan/Tahun</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
@@ -93,30 +94,49 @@
                     </tr>
                   </thead>
                   <tbody class="text-center">
-                    <tr>
-                      <td>
-                        <!-- No -->1
-                      </td>
-                      <td>
-                        <!-- Nama -->1
-                      </td>
-                      <td>
-                        <!-- Bulan / Tahun -->1
-                      </td>
-                      <td>
-                        <!-- Tagihan -->1
-                      </td>
-                      <td>
-                        <!-- Tagihan -->1
-                      </td>
-                      <td>
-                        <!-- Aksi -->
-                        <a href="#" class="btn btn-sm btn-warning">
-                          <i class="material-icons">edit</i>
-                          edit
-                        </a>
-                      </td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    $kueri = mysqli_query($conn, "SELECT * FROM riwayat_pembayaran");
+                    while ($row = mysqli_fetch_array($kueri)) {
+                      $idmhs = $row['id_mhs'];
+                      $kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id_mhs = $idmhs");
+                      $row2 = mysqli_fetch_array($kueri2);
+                      ?>
+                      <tr>
+                        <td>
+                          <!-- No -->
+                          <?php echo $no++; ?>
+                        </td>
+                        <td>
+                          <!-- Nama -->
+                          <?php echo $row2['nama_mhs']; ?>
+                        </td>
+                        <td>
+                          <!-- Nama -->
+                          <?php echo $row2['nim']; ?>
+                        </td>
+                        <td>
+                          <!-- Bulan / Tahun -->
+                          <?php echo $row['bulan']; ?>/
+                          <?php echo $row['tahun']; ?>
+                        </td>
+                        <td>
+                          <!-- Tagihan -->
+                          <?php echo format_rupiah($row['tagihan']); ?>
+                        </td>
+                        <td>
+                          <!-- status -->
+                          <?php echo $row['status']; ?>
+                        </td>
+                        <td>
+                          <!-- Aksi -->
+                          <a href="#" class="btn btn-sm btn-warning">
+                            <i class="material-icons">edit</i>
+                            edit
+                          </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>

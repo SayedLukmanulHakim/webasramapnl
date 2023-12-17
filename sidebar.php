@@ -14,11 +14,23 @@
                 </div>
                 <div class="col">
                     <span class="ms-1 font-weight-bold text-white">
-                        <?php echo $_SESSION['nama_user']; ?>
+                        <?php
+                        if (isset($_SESSION['nama_user'])) {
+                            echo $_SESSION['nama_user'];
+                        } else {
+                            echo 'Username';
+                        }
+                        ?>
                     </span>
                     <br />
                     <span class="ms-1 text-white">
-                        <?php echo $_SESSION['nomor_identitas']; ?>
+                        <?php
+                        if (isset($_SESSION['nomor_identitas'])) {
+                            echo $_SESSION['nomor_identitas'];
+                        } else {
+                            echo 'Nomor ID';
+                        }
+                        ?>
                     </span>
                 </div>
             </div>

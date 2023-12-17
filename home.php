@@ -72,6 +72,20 @@
         </nav>
         <!-- End Navbar -->
 
+
+        <?php
+        $kueri1 = mysqli_query($conn, "SELECT * FROM kamar");
+        $kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa");
+        $kueri3 = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'sudah'");
+        $kueri4 = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'belum'");
+
+        $cek1 = mysqli_num_rows($kueri1);
+        $cek2 = mysqli_num_rows($kueri2);
+        $cek3 = mysqli_num_rows($kueri3);
+        $cek4 = mysqli_num_rows($kueri4);
+
+        ?>
+
         <!-- Isi Body -->
         <div class="container-fluid py-4">
             <div class="row">
@@ -84,7 +98,9 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Jumlah Kamar</p>
-                                <h1 class="mb-0">10</h1>
+                                <h1 class="mb-0">
+                                    <?php echo $cek1; ?>
+                                </h1>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -101,7 +117,9 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Mahasiswa</p>
-                                <h1 class="mb-0">10</h1>
+                                <h1 class="mb-0">
+                                    <?php echo $cek2; ?>
+                                </h1>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -118,7 +136,9 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Belum Bayar</p>
-                                <h1 class="mb-0">10</h1>
+                                <h1 class="mb-0">
+                                    <?php echo $cek3; ?>
+                                </h1>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -135,7 +155,9 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Sudah Bayar</p>
-                                <h1 class="mb-0">10</h1>
+                                <h1 class="mb-0">
+                                    <?php echo $cek4; ?>
+                                </h1>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">

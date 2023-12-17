@@ -85,10 +85,14 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                Richard Davis
+                <?php if (isset($_SESSION['nama_user'])) {
+                  echo $_SESSION['nama_user'];
+                } ?>
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
-                CEO / Co-Founder
+                <?php if (isset($_SESSION['nomor_identitas'])) {
+                  echo $_SESSION['nomor_identitas'];
+                } ?>
               </p>
             </div>
           </div>

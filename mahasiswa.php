@@ -92,7 +92,6 @@
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">kewarganegaraan</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">agama</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Email</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Password</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No Telp</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kode Pos</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Provinsi</th>
@@ -111,90 +110,119 @@
                     </tr>
                   </thead>
                   <tbody class="text-center">
-                    <tr>
-                      <td>
-                        <!-- No -->1
-                      </td>
-                      <td>
-                        <!-- Foto -->1
-                      </td>
-                      <td>
-                        <!-- ID -->1
-                      </td>
-                      <td>
-                        <!-- Nama -->1
-                      </td>
-                      <td>
-                        <!-- NIK / NIM   -->1
-                      </td>
-                      <td>
-                        <!-- TTl   -->1
-                      </td>
-                      <td>
-                        <!-- JK   -->1
-                      </td>
-                      <td>
-                        <!-- Kewarganegaraan   -->1
-                      </td>
-                      <td>
-                        <!-- Agama -->1
-                      </td>
-                      <td>
-                        <!-- Email -->1
-                      </td>
-                      <td>
-                        <!-- Password -->1
-                      </td>
-                      <td>
-                        <!-- No Telp -->1
-                      </td>
-                      <td>
-                        <!-- Kode Pos -->1
-                      </td>
-                      <td>
-                        <!-- Provinsi -->1
-                      </td>
-                      <td>
-                        <!-- Kabupaten -->1
-                      </td>
-                      <td>
-                        <!-- Kecamatan -->1
-                      </td>
-                      <td>
-                        <!-- Alamat -->1
-                      </td>
-                      <td>
-                        <!-- Orang Tua / Wali -->1
-                      </td>
-                      <td>
-                        <!-- No Telp Orang Tua / Wali -->1
-                      </td>
-                      <td>
-                        <!-- Alamat Orang Tua / Wali -->1
-                      </td>
-                      <td>
-                        <!-- Pendidikan Terakhir -->1
-                      </td>
-                      <td>
-                        <!-- Sekolah -->1
-                      </td>
-                      <td>
-                        <!-- Jurusan -->1
-                      </td>
-                      <td>
-                        <!-- Prodi -->1
-                      </td>
-                      <td>
-                        <!-- Semester -->1
-                      </td>
-                      <td>
-                        <!-- Aksi -->
-                        <a href="#" class="btn btn-sm btn-warning">
-                          <i class="material-icons">edit</i>
-                          edit
-                        </a>
-                      </td>
-                    </tr>
+
+                    <?php
+                    $no = 1;
+                    $kueri = mysqli_query($conn, "SELECT * FROM mahasiswa");
+                    while ($row = mysqli_fetch_array($kueri)) {
+                      ?>
+                      <tr>
+                        <td>
+                          <!-- No -->
+                          <?php echo $no++; ?>
+                        </td>
+                        <td>
+                          <!-- Foto -->
+                          <img src="images/<?php echo $row['foto'] ?>" width="60" height="60" class="rounded" alt="">
+                        </td>
+                        <td>
+                          <!-- ID -->
+                          <?php echo $row['id_mhs'] ?>
+                        </td>
+                        <td>
+                          <!-- Nama -->
+                          <?php echo $row['nama_mhs'] ?>
+                        </td>
+                        <td>
+                          <!-- NIK / NIM   -->
+                          <?php echo $row['nim'] ?>
+                        </td>
+                        <td>
+                          <!-- TTl   -->
+                          <?php echo $row['tempat'] ?>,
+                          <?php echo $row['tgl_lahir'] ?>
+                        </td>
+                        <td>
+                          <!-- JK   -->
+                          <?php echo $row['jk'] ?>
+                        </td>
+                        <td>
+                          <!-- Kewarganegaraan   -->
+                          <?php echo $row['kewarganegaraan'] ?>
+                        </td>
+                        <td>
+                          <!-- Agama -->
+                          <?php echo $row['agama'] ?>
+                        </td>
+                        <td>
+                          <!-- Email -->
+                          <?php echo $row['email'] ?>
+                        </td>
+                        <td>
+                          <!-- No Telp -->
+                          <?php echo $row['no_hp'] ?>
+                        </td>
+                        <td>
+                          <!-- Kode Pos -->
+                          <?php echo $row['kode_pos'] ?>
+                        </td>
+                        <td>
+                          <!-- Provinsi -->
+                          <?php echo $row['provinsi'] ?>
+                        </td>
+                        <td>
+                          <!-- Kabupaten -->
+                          <?php echo $row['kabupaten'] ?>
+                        </td>
+                        <td>
+                          <!-- Kecamatan -->
+                          <?php echo $row['kecamatan'] ?>
+                        </td>
+                        <td>
+                          <!-- Alamat -->
+                          <?php echo $row['alamat'] ?>
+                        </td>
+                        <td>
+                          <!-- Orang Tua / Wali -->
+                          <?php echo $row['ortu'] ?>
+                        </td>
+                        <td>
+                          <!-- No Telp Orang Tua / Wali -->
+                          <?php echo $row['no_hp_ortu'] ?>
+                        </td>
+                        <td>
+                          <!-- Alamat Orang Tua / Wali -->
+                          <?php echo $row['alamat_ortu'] ?>
+                        </td>
+                        <td>
+                          <!-- Pendidikan Terakhir -->
+                          <?php echo $row['pendidikan'] ?>
+                        </td>
+                        <td>
+                          <!-- Sekolah -->
+                          <?php echo $row['nama_sekolah'] ?>
+                        </td>
+                        <td>
+                          <!-- Jurusan -->
+                          <?php echo $row['jurusan'] ?>
+                        </td>
+                        <td>
+                          <!-- Prodi -->
+                          <?php echo $row['prodi'] ?>
+                        </td>
+                        <td>
+                          <!-- Semester -->
+                          <?php echo $row['semester'] ?>
+                        </td>
+                        <td>
+                          <!-- Aksi -->
+                          <a href="#" class="btn btn-sm btn-warning">
+                            <i class="material-icons">edit</i>
+                            edit
+                          </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>

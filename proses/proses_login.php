@@ -9,7 +9,7 @@ $cek = mysqli_num_rows($kueri);
 $row = mysqli_fetch_array($kueri);
 
 if ($cek > 0) {
-    $_SESSION['id_user'] = $row['id_user'];
+    $_SESSION['nomor_identitas'] = $row['nomor_identitas'];
     $_SESSION['nama_user'] = $row['nama_user'];
     $_SESSION['nomor_identitas'] = $row['nomor_identitas'];
     $_SESSION['username'] = $row['username'];
@@ -23,7 +23,7 @@ if ($cek > 0) {
         header('location:../index.php?status=welcome');
 
     } else if ($level == 'mahasiswa') {
-        header('location:../mahasiswa/user_mhs.html?status=welcome');
+        header('location:../mahasiswa/index.php?status=welcome');
 
     }
 } else {

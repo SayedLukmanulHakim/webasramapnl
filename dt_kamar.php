@@ -94,30 +94,43 @@
                     </tr>
                   </thead>
                   <tbody class="text-center">
-                    <tr>
-                      <td>
-                        <!-- No -->1
-                      </td>
-                      <td>
-                        <!-- ID -->1
-                      </td>
-                      <td>
-                        <!-- Lantai -->1
-                      </td>
-                      <td>
-                        <!-- Kapasitas   -->1
-                      </td>
-                      <td>
-                        <!-- Tarif   -->1
-                      </td>
-                      <td>
-                        <!-- Aksi -->
-                        <a href="edit_kamar.html" class="btn btn-sm btn-warning">
-                          <i class="material-icons">edit</i>
-                          edit
-                        </a>
-                      </td>
-                    </tr>
+                    <?php
+                    $no = 1;
+                    $kueri = mysqli_query($conn, "SELECT * FROM kamar");
+                    while ($row = mysqli_fetch_array($kueri)) {
+                      ?>
+                      <tr>
+                        <td>
+                          <!-- No -->
+                          <?php echo $no++; ?>
+                        </td>
+                        <td>
+                          <!-- ID -->
+                          <?php echo $row['id_kamar'] ?>
+                        </td>
+                        <td>
+                          <!-- Lantai -->
+                          <?php echo $row['lantai'] ?>
+                        </td>
+                        <td>
+                          <!-- Kapasitas   -->
+                          <?php echo $row['kapasitas'] ?>
+                        </td>
+                        <td>
+                          <!-- Tarif   -->
+                          <?php
+                          echo format_rupiah($row['tarif']);
+                          ?>
+                        </td>
+                        <td>
+                          <!-- Aksi -->
+                          <a href="edit_kamar.html" class="btn btn-sm btn-warning">
+                            <i class="material-icons">edit</i>
+                            edit
+                          </a>
+                        </td>
+                      </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>

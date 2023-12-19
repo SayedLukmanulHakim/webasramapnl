@@ -216,7 +216,7 @@
                         </td>
                         <td>
                           <!-- Aksi -->
-                          <a href="#" class="btn btn-sm btn-warning">
+                          <a href="edit_mahasiswa.php?id=<?php echo $row['semester'] ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
                             edit
                           </a>

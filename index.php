@@ -23,8 +23,8 @@ if (isset($_SESSION['level'])) {
       } else if ($_GET['x'] == 'pembayaran') {
         header('location:dt_pembayaran.php?x=' . $_GET['x']);
 
-      } else if ($_GET['x'] == 'konfirmasi') {
-        header('location:konfirmasi.php?x=' . $_GET['x']);
+      } else if ($_GET['x'] == 'tagihan') {
+        header('location:tagihan.php?x=' . $_GET['x']);
 
       } else if ($_GET['x'] == 'kelola_user') {
         header('location:kelola_user.php?x=' . $_GET['x']);

@@ -97,13 +97,13 @@
             <li class="nav-item">
 
                 <a class="nav-link text-white
-            <?php if (isset($_GET['x']) && $_GET['x'] == 'konfirmasi') {
+            <?php if (isset($_GET['x']) && $_GET['x'] == 'tagihan') {
                 echo "bg-gradient-warning";
-            } ?>" href="index.php?x=konfirmasi">
+            } ?>" href="index.php?x=tagihan">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">confirmation_number</i>
                     </div>
-                    <span class="nav-link-text ms-1">Konfirmasi Pembayaran</span>
+                    <span class="nav-link-text ms-1">Tagihan</span>
                 </a>
 
             </li>
@@ -140,7 +140,7 @@
 
                 <?php
                 if (isset($_SESSION['nama_user'])) { ?>
-                    <a class="nav-link text-white" href="proses/logout.php">
+                    <a class="nav-link text-white" href="#" onclick="logout()">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10">login</i>
                         </div>
@@ -158,6 +158,28 @@
                 ?>
 
             </li>
+
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                function logout() {
+                    Swal.fire({
+                        title: "Logout",
+                        text: "Konfirmasi Logout?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        confirmButtonText: 'Logout',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'proses/logout.php';
+                        }
+
+                    })
+                }
+            </script>
+
+
         </ul>
     </div>
 

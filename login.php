@@ -27,7 +27,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <?php if (isset($_GET['status']) && $_GET['status'] == 'gagal') { ?>
-
     <script>
       Swal.fire({
         title: "Gagal",
@@ -37,7 +36,18 @@
         window.location.href = 'login.php';
       });
     </script>
-  <?php } ?>
+  <?php } else if (isset($_GET['status']) && $_GET['status'] == 'berhasil') { ?>
+      <script>
+        Swal.fire({
+          title: "Berhasil",
+          text: "Pendaftaran Berhasil, Silahkan Login",
+          icon: "success"
+        }).then((result) => {
+          window.location.href = 'login.php';
+        });
+      </script>
+  <?php }
+  ?>
 
 
   <div class="container position-sticky z-index-sticky top-0">

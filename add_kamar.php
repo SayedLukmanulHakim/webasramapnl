@@ -1,4 +1,3 @@
-<?php include 'proses/koneksi.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="./assets/img/logo.png" />
-  <title>Data Kamar</title>
+  <title>Add Kamar</title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -23,11 +22,9 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
-
-  <!-- SIDEBAR  -->
+  <!-- SIDEBAR -->
   <?php include 'sidebar.php'; ?>
   <!-- SIDEBAR -->
-
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -38,7 +35,7 @@
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Data Kamar</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Data Kamar</h6>
+          <h6 class="font-weight-bolder mb-0">Add Data Kamar</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -75,65 +72,57 @@
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-warning shadow-primary border-radius-lg pt-4 pb-3">
                 <div class="d-flex justify-content-between">
-                  <h6 class="text-white text-capitalize ps-3">Data Kamar</h6>
-                  <a href="add_kamar.php" class="btn bg-gradient-dark me-3">Add Data Kamar</a>
+                  <h6 class="text-white text-capitalize ps-3">Add Data Kamar</h6>
                 </div>
               </div>
             </div>
-            <div class="card-body px-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 text-center">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Lantai</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kapasitas</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tarif</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-center">
-                    <?php
-                    $no = 1;
-                    $kueri = mysqli_query($conn, "SELECT * FROM kamar");
-                    while ($row = mysqli_fetch_array($kueri)) {
-                      ?>
-                      <tr>
-                        <td>
-                          <!-- No -->
-                          <?php echo $no++; ?>
-                        </td>
-                        <td>
-                          <!-- ID -->
-                          <?php echo $row['id_kamar'] ?>
-                        </td>
-                        <td>
-                          <!-- Lantai -->
-                          <?php echo $row['lantai'] ?>
-                        </td>
-                        <td>
-                          <!-- Kapasitas   -->
-                          <?php echo $row['kapasitas'] ?>
-                        </td>
-                        <td>
-                          <!-- Tarif   -->
-                          <?php
-                          echo format_rupiah($row['tarif']);
-                          ?>
-                        </td>
-                        <td>
-                          <!-- Aksi -->
-                          <a href="edit_kamar.php?id=<?php echo $row['id_kamar'] ?>" class="btn btn-sm btn-warning">
-                            <i class="material-icons">edit</i>
-                            edit
-                          </a>
-                        </td>
-                      </tr>
-                    <?php } ?>
-                  </tbody>
-                </table>
-              </div>
+            <div class="card-body px-0 pb-3 col-md-9">
+              <form action="proses/add_kamar.php" method="GET">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Nama Kamar</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Nama Kamar...</label>
+                    <input type="text" name="nama" class="form-control" onfocus="focused(this)"
+                      onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Lantai</label>
+                  <div class="input-group input-group-outline">
+                    <select name="lantai" id="" class="form-control">
+                      <option selected value="Lantai 1">Lantai 1</option>
+                      <option value="Lantai 2">Lantai 2</option>
+                      <option value="Lantai 3">Lantai 3</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Kapasitas</label>
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Kapasitas / orang...</label>
+                    <input type="number" min="1" name="kapasitas" class="form-control" onfocus="focused(this)"
+                      onfocusout="defocused(this)">
+                  </div>
+
+                </div>
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Tarif / Semester</label>
+                  <div class="input-group input-group-outline">
+                    <input type="text" name="tarif" value="450000" class="form-control" onfocus="focused(this)"
+                      onfocusout="defocused(this)" placeholder="Tarif / Semester...">
+                  </div>
+                </div>
+
+                <div class="m-3 mt-5 d-flex">
+                  <input type="submit" value="Tambah Data" class="btn btn-info">
+                  <div class="mx-3"></div>
+                  <a href="dt_kamar.php?x=kamar" class="btn btn-secondary">KEMBALI</a>
+                </div>
+
+              </form>
             </div>
           </div>
         </div>

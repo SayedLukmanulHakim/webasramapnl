@@ -25,7 +25,7 @@
 
 <body class="g-sidenav-show bg-gray-200">
   <div class="container p-3 my-3">
-    <form id="form" action="proses/proses_reg.php" method="post">
+    <form id="form" action="proses/proses_reg.php" method="post" enctype="multipart/form-data">
 
       <!-- DATA DIRI -->
       <div class="alert alert-dark text-center">
@@ -44,9 +44,9 @@
         </div>
 
         <div class="col-sm-5">
-          <label for="" class="col-form-label me-3">Nomor Identitas :</label>
+          <label for="" class="col-form-label me-3">NIM :</label>
           <div class="input-group input-group-outline">
-            <input type="text" name="nim" class="form-control" placeholder="Masukan Nomor NIK / NIM" required />
+            <input type="number" name="nim" class="form-control" placeholder="Masukan Nomor NIK / NIM" required />
           </div>
         </div>
       </div>
@@ -71,8 +71,8 @@
           <div class="input-group input-group-outline">
             <select class="form-control" name="jk" required>
               <option>Pilih</option>
-              <option value="1">Laki-laki</option>
-              <option value="2">Perempuan</option>
+              <option value="Laki-laki">Laki-laki</option>
+              <option value="Perempuan">Perempuan</option>
             </select>
           </div>
         </div>
@@ -234,9 +234,9 @@
           <label for="" class="col-form-label me-3">Pendidikan Terakhir:</label>
           <div class="input-group input-group-outline">
             <select class="form-control" name="pendidikan" required>
-              <option value="SMA-IPA">SMA</option>
-              <option value="SMA-IPA">SMK</option>
-              <option value="SMA-IPA">MA</option>
+              <option value="SMA">SMA</option>
+              <option value="SMK">SMK</option>
+              <option value="MA">MA</option>
             </select>
           </div>
         </div>
@@ -274,14 +274,14 @@
           <label for="" class="col-form-label me-3">Semester</label>
           <div class="input-group input-group-outline">
             <select class="form-control" name="semester" required>
-              <option value="Semester 1">Semester 1</option>
-              <option value="Semester 2">Semester 2</option>
-              <option value="Semester 3">Semester 3</option>
-              <option value="Semester 4">Semester 4</option>
-              <option value="Semester 5">Semester 5</option>
-              <option value="Semester 6">Semester 6</option>
-              <option value="Semester 7">Semester 7</option>
-              <option value="Semester 8">Semester 8</option>
+              <option value="1">Semester 1</option>
+              <option value="2">Semester 2</option>
+              <option value="3">Semester 3</option>
+              <option value="4">Semester 4</option>
+              <option value="5">Semester 5</option>
+              <option value="6">Semester 6</option>
+              <option value="7">Semester 7</option>
+              <option value="8">Semester 8</option>
             </select>
           </div>
         </div>

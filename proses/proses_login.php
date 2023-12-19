@@ -24,7 +24,6 @@ if ($cek > 0) {
 
     } else if ($level == 'mahasiswa') {
         header('location:../mahasiswa/index.php?status=welcome');
-
     }
 } else {
     header('location:../login.php?status=gagal');

@@ -9,7 +9,6 @@ $tanggal_lahir = $_POST['tanggal_lahir'];
 $jk = $_POST['jk'];
 $kewarganegaraan = $_POST['kewarganegaraan'];
 $agama = $_POST['agama'];
-$upload_foto = $_POST['upload_foto'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $no_telp = $_POST['no_telp'];
@@ -27,12 +26,25 @@ $jurusan = $_POST['jurusan'];
 $semester = $_POST['semester'];
 $prodi = $_POST['prodi'];
 
-$kueri = mysqli_query($conn, "INSERT INTO mahasiswa (nama_mhs, nim, tempat, tgl_lahir, jk, kewarganegaraan, agama, foto, email, no_hp, ortu, no_hp_ortu, alamat, kode_pos, provinsi, kecamatan, pendidikan, nama_sekolah, jurusan, semester, prodi, alamat_ortu) 
-VALUES ('$nama', '$nim', '$tempat_lahir', '$tanggal_lahir', '$jk', '$kewarganegaraan', '$agama', '$upload_foto', '$email', '$no_telp', '$nama_ortu', '$nomor_ortu', '$alamat', '$kode_pos', '$provinsi', '$kecamatan', '$pendidikan', '$sekolah', '$jurusan', '$semester', '$prodi', '$alamatortu')");
+$upload_foto = $_FILES["upload_foto"];
+
+$targetDirectory = "../images/";
+$hasil = uploadGambar($upload_foto, $targetDirectory);
+if ($hasil[0] == "success") {
+    $namafile = $hasil[1];
+    $kueri = mysqli_query($conn, "INSERT INTO mahasiswa (nama_mhs, nim, tempat, tgl_lahir, jk, kewarganegaraan, agama, foto, email, no_hp, ortu, no_hp_ortu, alamat, kode_pos, provinsi, kecamatan, pendidikan, nama_sekolah, jurusan, semester, prodi, alamat_ortu, kabupaten) 
+VALUES ('$nama', '$nim', '$tempat_lahir', '$tanggal_lahir', '$jk', '$kewarganegaraan', '$agama', '$namafile', '$email', '$no_telp', '$nama_ortu', '$nomor_ortu', '$alamat', '$kode_pos', '$provinsi', '$kecamatan', '$pendidikan', '$sekolah', '$jurusan', '$semester', '$prodi', '$alamatortu', '$kabupaten')");
+
+    $kueri2 = mysqli_query($conn, "INSERT INTO user (nama_user, nomor_identitas, username, level, password) VALUES ('$nama','$nim','$nama','mahasiswa','$password')");
+
+    header("location:../login.php?status=berhasil");
+} elseif ($hasil[0] == "error") {
+    $statusupload = "Upload Error";
+    header("location:../reg.php?status=error");
+} else {
+    $statusupload = $hasil;
+    header("location:../reg.php?status=error");
+}
 
 
-$kueri2 = mysqli_query($conn, "INSERT INTO user (nama_user, nomor_identitas, username, level, password) VALUES ('$nama','$nim','$nama','mahasiswa','$password')");
-
-
-header("location:../login.php?status=berhasil");
 ?>

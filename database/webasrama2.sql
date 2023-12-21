@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2023 at 01:14 AM
+-- Generation Time: Dec 21, 2023 at 02:20 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -103,7 +103,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_tagihan`, `id_mhs`, `foto_bukti_pembayaran`, `waktu_pembayaran`, `status`) VALUES
-(1, 2, 2, '1952af705c49537b.jpg', '2023-12-21 03:12:13', 'confirmed');
+(6, 6, 2, '96f07b9ce5b0ed60.jpg', '2023-12-21 08:17:47', 'pending');
 
 -- --------------------------------------------------------
 
@@ -149,7 +149,7 @@ CREATE TABLE `tagihan` (
 INSERT INTO `tagihan` (`id_tagihan`, `nama`, `bulan`, `tahun`, `tagihan`, `tgl_tagih`, `status`) VALUES
 (1, 'Tagihan 1', 1, 2024, 200000, '2023-12-21 02:13:24', 'non_active'),
 (2, 'Tagihan 2', 6, 2024, 450000, '2023-12-21 02:33:26', 'non_active'),
-(6, 'Tagihannn', 2, 2024, 500000, '2023-12-21 06:46:09', 'active');
+(6, 'Tagihannn', 2, 2024, 500000, '2023-12-21 06:46:09', 'non_active');
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,7 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id_pembayaran` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pembayaran` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `penghuni`

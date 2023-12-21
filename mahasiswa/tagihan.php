@@ -35,6 +35,11 @@
   </div>
 </nav>
 <!-- End Navbar -->
+<script>
+  function bayar(nilai) {
+    document.getElementById('idtagihan').value = nilai;
+  }
+</script>
 
 <div class="container-fluid py-4">
   <div class="row">
@@ -114,8 +119,14 @@
 
                       ?>
                     </td>
-                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#ModalBayar"
-                        class="btn btn-sm btn-success">Bayar</a></td>
+                    <td>
+                      <?php if ($cek <= 0) { ?>
+                        <a href="#" onclick="bayar(<?php echo $row['id_tagihan']; ?>)" data-bs-toggle="modal"
+                          data-bs-target="#ModalBayar" class="btn btn-sm btn-success">Bayar</a>
+
+                      <?php } ?>
+
+                    </td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -134,13 +145,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="#">
-              <input type="file" class="form-control">
+            <form action="proses/bayar_tagihan.php" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="idtagihan" value="" id="idtagihan">
+              <input type="file" name="upload_foto" class="form-control" required>
+              <input type="submit" class="btn btn-primary m-2 w-100" value="Kirim" name="" id="">
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-info">BAYAR</button>
+
           </div>
         </div>
       </div>
@@ -148,8 +161,10 @@
     <!-- MODAL BAYAR -->
 
 
+
+
     <!-- RIWAYAT TAGIHAN -->
-    <div class="col-12">
+    <div class="col-12 d-none">
       <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
           <div class="bg-gradient-secondary shadow-secondary border-radius-lg pt-4 pb-3">
@@ -225,8 +240,8 @@
                       ?>
                     </td>
                     <td>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#ModalBayar"
-                        class="btn btn-sm btn-success">Bayar</a>
+                      <a href="#" onclick="bayar(<?php echo $row['id_tagihan']; ?>)" data-bs-toggle="modal"
+                        data-bs-target="#ModalBayar" class="btn btn-sm btn-success">Bayar</a>
                     </td>
                   </tr>
                 <?php } ?>

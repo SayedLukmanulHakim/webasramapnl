@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,7 +34,7 @@
         text: "Data berhasil ditambahkan",
         icon: "success"
       }).then((result) => {
-        window.location.href = 'add_pengelola.php';
+        window.location.href = 'kelola_user.php';
       });
     </script>
   <?php } else if (isset($_GET['status']) && $_GET['status'] == 'gagal') { ?>
@@ -51,99 +52,7 @@
   <?php } ?>
 
 
-  <aside
-    class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 bg-gradient-dark"
-    id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="#">
-        <div class="row">
-          <div class="col-3">
-            <img src="https://shanibacreative.com/wp-content/uploads/2020/06/membuat-foto-profil-yang-bagus.jpg"
-              class="navbar-brand-img h-100" alt="main_logo" style="aspect-ratio: 1/1; object-fit: cover" />
-          </div>
-          <div class="col">
-            <span class="ms-1 font-weight-bold text-white">Ibnu Katsir</span>
-            <br />
-            <span class="ms-1 text-white">1231213123</span>
-          </div>
-        </div>
-      </a>
-    </div>
-    <hr class="horizontal light mt-0 mb-2" />
-    <div class="collapse navbar-collapse w-auto max-height-vh-100" style="height: 100%" id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white" href="index.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="mahasiswa.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Data Mahasiswa</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="dt_kamar.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">king_bed</i>
-            </div>
-            <span class="nav-link-text ms-1">Data Kamar</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="dt_pembayaran.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">payments</i>
-            </div>
-            <span class="nav-link-text ms-1">Data Pembayaran</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="konfirmasi.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">confirmation_number</i>
-            </div>
-            <span class="nav-link-text ms-1">Konfirmasi Pembayaran</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white active bg-gradient-warning" href="kelola_user.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">manage_accounts</i>
-            </div>
-            <span class="nav-link-text ms-1">Kelola User</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="profiladm.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="#">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">login</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign In</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
+  <?php include 'sidebar.php'; ?>
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -196,7 +105,7 @@
               </div>
             </div>
             <div class="card-body px-0 pb-3 col-md-9">
-              <form action="proses/add_pengelola.php" method="GET">
+              <form action="proses/add_pengelola.php" method="POST" enctype="multipart/form-data">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
                   <label for="" class="col-form-label ps-4 col-sm-3">Nama</label>
                   <div class="input-group input-group-outline">
@@ -231,6 +140,14 @@
                     <label class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" onfocus="focused(this)" required
                       onfocusout="defocused(this)">
+                  </div>
+                </div>
+
+
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Foto</label>
+                  <div class="input-group input-group-outline">
+                    <input type="file" name="upload_foto" class="form-control">
                   </div>
                 </div>
 

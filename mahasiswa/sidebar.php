@@ -7,8 +7,8 @@
         <a class="navbar-brand m-0" href="#">
             <div class="row">
                 <div class="col-3">
-                    <img src="https://shanibacreative.com/wp-content/uploads/2020/06/membuat-foto-profil-yang-bagus.jpg"
-                        class="navbar-brand-img h-100" alt="main_logo" style="aspect-ratio: 1/1; object-fit: cover" />
+                    <img src="../images/8b5d97398afce603.jpg" class="navbar-brand-img h-100" alt="main_logo"
+                        style="aspect-ratio: 1/1; object-fit: cover" />
                 </div>
                 <div class="col">
                     <span class="ms-1 font-weight-bold text-white">
@@ -45,9 +45,9 @@
                     echo 'text-white active bg-gradient-warning';
                 } ?>" href="index.php?x=home">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">person</i>
+                        <i class="material-icons opacity-10">house</i>
                     </div>
-                    <span class="nav-link-text ms-1">Mahasiswa</span>
+                    <span class="nav-link-text ms-1">Home</span>
                 </a>
             </li>
             <li class="nav-item">

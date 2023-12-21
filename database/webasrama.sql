@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 06:41 PM
+-- Generation Time: Dec 21, 2023 at 01:14 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webasrama`
+-- Database: `webasrama2`
 --
 
 -- --------------------------------------------------------
@@ -28,47 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `kamar` (
-  `id_kamar` int(25) NOT NULL,
-  `lantai` varchar(25) NOT NULL,
-  `kapasitas` int(15) NOT NULL,
-  `tarif` int(15) NOT NULL
+  `id_kamar` int(11) NOT NULL,
+  `nama_kamar` varchar(50) DEFAULT NULL,
+  `lantai` varchar(11) DEFAULT NULL,
+  `kapasitas` int(11) DEFAULT NULL,
+  `full` varchar(15) DEFAULT 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kamar`
 --
 
-INSERT INTO `kamar` (`id_kamar`, `lantai`, `kapasitas`, `tarif`) VALUES
-(1, '1', 4, 450000),
-(2, '1', 4, 450000),
-(3, '1', 4, 450000),
-(4, '1', 4, 450000),
-(5, '1', 4, 450000),
-(6, '1', 4, 450000),
-(7, '1', 4, 450000),
-(8, '1', 4, 450000),
-(9, '1', 4, 450000),
-(10, '1', 4, 450000),
-(11, '2', 4, 450000),
-(12, '2', 4, 450000),
-(13, '2', 4, 450000),
-(14, '2', 4, 450000),
-(15, '2', 4, 450000),
-(16, '2', 4, 450000),
-(17, '2', 4, 450000),
-(18, '2', 4, 450000),
-(19, '2', 4, 450000),
-(20, '2', 4, 450000),
-(21, '3', 4, 450000),
-(22, '3', 4, 450000),
-(23, '3', 4, 450000),
-(24, '3', 4, 450000),
-(25, '3', 4, 450000),
-(26, '3', 4, 450000),
-(27, '3', 4, 450000),
-(28, '3', 4, 450000),
-(29, '3', 4, 450000),
-(30, '3', 4, 450000);
+INSERT INTO `kamar` (`id_kamar`, `nama_kamar`, `lantai`, `kapasitas`, `full`) VALUES
+(1, 'Kamar 1', 'Lantai 2', 4, 'false');
 
 -- --------------------------------------------------------
 
@@ -77,41 +49,61 @@ INSERT INTO `kamar` (`id_kamar`, `lantai`, `kapasitas`, `tarif`) VALUES
 --
 
 CREATE TABLE `mahasiswa` (
-  `id_mhs` int(15) NOT NULL,
-  `nim` varchar(100) NOT NULL,
-  `nama_mhs` varchar(100) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  `tempat` varchar(50) NOT NULL,
-  `tgl_lahir` date NOT NULL,
-  `jk` varchar(15) NOT NULL,
-  `kewarganegaraan` varchar(50) NOT NULL,
-  `agama` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `no_hp` varchar(50) NOT NULL,
-  `kode_pos` varchar(25) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `provinsi` varchar(255) NOT NULL,
-  `kabupaten` varchar(255) NOT NULL,
-  `kecamatan` varchar(255) NOT NULL,
-  `ortu` varchar(50) NOT NULL,
-  `no_hp_ortu` varchar(25) NOT NULL,
-  `alamat_ortu` varchar(100) NOT NULL,
-  `pendidikan` varchar(25) NOT NULL,
-  `nama_sekolah` varchar(100) NOT NULL,
-  `jurusan` varchar(50) NOT NULL,
-  `prodi` varchar(50) NOT NULL,
-  `semester` varchar(50) NOT NULL
+  `id_mhs` int(11) NOT NULL,
+  `nim` int(20) DEFAULT NULL,
+  `nama_mhs` varchar(255) DEFAULT NULL,
+  `foto` varchar(500) DEFAULT NULL,
+  `tempat` varchar(255) DEFAULT NULL,
+  `tgl_lahir` date DEFAULT NULL,
+  `jk` varchar(15) DEFAULT NULL,
+  `kewarganegaraan` varchar(50) DEFAULT NULL,
+  `agama` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `no_hp` varchar(15) DEFAULT NULL,
+  `kode_pos` varchar(10) DEFAULT NULL,
+  `alamat` text DEFAULT NULL,
+  `provinsi` varchar(100) DEFAULT NULL,
+  `kabupaten` varchar(100) DEFAULT NULL,
+  `kecamatan` varchar(100) DEFAULT NULL,
+  `ortu` varchar(255) DEFAULT NULL,
+  `no_hp_ortu` varchar(15) DEFAULT NULL,
+  `alamat_ortu` text DEFAULT NULL,
+  `pendidikan` varchar(255) DEFAULT NULL,
+  `nama_sekolah` varchar(255) DEFAULT NULL,
+  `jurusan` varchar(255) DEFAULT NULL,
+  `prodi` varchar(255) DEFAULT NULL,
+  `semester` int(11) DEFAULT NULL,
+  `id_kamar` int(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id_mhs`, `nim`, `nama_mhs`, `foto`, `tempat`, `tgl_lahir`, `jk`, `kewarganegaraan`, `agama`, `email`, `no_hp`, `kode_pos`, `alamat`, `provinsi`, `kabupaten`, `kecamatan`, `ortu`, `no_hp_ortu`, `alamat_ortu`, `pendidikan`, `nama_sekolah`, `jurusan`, `prodi`, `semester`) VALUES
-(1, '2021903430042', 'Lukmanul Hakim', 'user1.jpg', 'Batee Iliek', '2003-07-12', 'Laki-laki', 'Warga Negara Indonesia', 'Islam', 'www,lukamnhakim22@gmail.com', '082312341234', '24264', 'Batee Iliek', 'Aceh', 'Bireuen', 'Samalanga', 'sayed', '082312341234', 'Batee Iliek', 'SMK', 'SMA SAMALANGA', 'Teknologi Informasi dan Komputer', 'Teknologi Rekayasa Komputer Jaringan', 'Semester 5'),
-(2, '2022573100098', 'Muhammad Kholis', '', 'Langsa', '2023-12-17', '1', 'WNI', 'Islam', 'parzivalxddd@gmail.com', '0812', '24451', 'Gp Jawa depan, Langsa Kota', 'ACEH', '', 'Langsa', 'gg', 'gg', '', 'SMA-IPA', 'STM', 'TIK', 'TIK', 'TIK'),
-(3, '567567', 'kholis', '', 'Langsa', '2023-12-17', '1', 'Warga Negara Indonesia', 'Islam', 'parzivalxddd@gmail.com', '0812gr', '24451', 'Gp Jawa depan, Langsa Kota', 'ACEH', '', 'Langsa', 'hh', '345', 'ghkh', 'SMA-IPA', 'STM', 'Teknologi Informasi dan Komputer', 'D4 - Teknologi Rekayasa Komputer Jaringan', 'Semester 3'),
-(4, '1234', ' Siswa 2 ', '', 'Langsa', '2023-12-17', '1', 'Warga Negara Indonesia', 'Islam', 'bogeng@gmail.com', 'hh', '24451', 'Gp Jawa depan, Langsa Kota', 'ACEH', '', 'Langsa', 'hh', 'hh', 'Jln T Fakinah Perumahan PTPN 1', 'SMA-IPA', 'hhhh', 'Teknologi Informasi dan Komputer', 'D4 - Teknologi Rekayasa Komputer Jaringan', 'Semester 1');
+INSERT INTO `mahasiswa` (`id_mhs`, `nim`, `nama_mhs`, `foto`, `tempat`, `tgl_lahir`, `jk`, `kewarganegaraan`, `agama`, `email`, `no_hp`, `kode_pos`, `alamat`, `provinsi`, `kabupaten`, `kecamatan`, `ortu`, `no_hp_ortu`, `alamat_ortu`, `pendidikan`, `nama_sekolah`, `jurusan`, `prodi`, `semester`, `id_kamar`) VALUES
+(2, 2147483647, 'Lukmanull Hakim', '8b5d97398afce603.jpg', 'Samalanga', '2023-12-21', 'Laki-laki', 'Warga Negara Indonesia', 'Islam', 'user@gmail.com', '0812', 'test', 'test', 'ACEH', 'Bireun', 'Samalanga', 'test', '123', 'test', 'SMK', 'STM', 'Teknologi Informasi dan Komputer', 'D4 - Teknologi Rekayasa Komputer Jaringan', 5, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE `pembayaran` (
+  `id_pembayaran` int(15) NOT NULL,
+  `id_tagihan` int(15) NOT NULL,
+  `id_mhs` int(15) NOT NULL,
+  `foto_bukti_pembayaran` varchar(500) NOT NULL,
+  `waktu_pembayaran` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(15) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_tagihan`, `id_mhs`, `foto_bukti_pembayaran`, `waktu_pembayaran`, `status`) VALUES
+(1, 2, 2, '1952af705c49537b.jpg', '2023-12-21 03:12:13', 'confirmed');
 
 -- --------------------------------------------------------
 
@@ -120,41 +112,19 @@ INSERT INTO `mahasiswa` (`id_mhs`, `nim`, `nama_mhs`, `foto`, `tempat`, `tgl_lah
 --
 
 CREATE TABLE `penghuni` (
-  `id_penghuni` int(25) NOT NULL,
-  `id_kamar` int(25) NOT NULL,
-  `id_mhs` int(15) NOT NULL
+  `id_penghuni` int(11) NOT NULL,
+  `id_kamar` int(11) DEFAULT NULL,
+  `id_mhs` int(11) DEFAULT NULL,
+  `waktu` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status_huni` varchar(15) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penghuni`
 --
 
-INSERT INTO `penghuni` (`id_penghuni`, `id_kamar`, `id_mhs`) VALUES
-(1, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `riwayat_pembayaran`
---
-
-CREATE TABLE `riwayat_pembayaran` (
-  `id_riwayat` int(15) NOT NULL,
-  `id_mhs` int(15) NOT NULL,
-  `nim` varchar(100) NOT NULL,
-  `bulan` varchar(25) NOT NULL,
-  `tahun` varchar(25) NOT NULL,
-  `tagihan` int(15) NOT NULL,
-  `status` varchar(50) NOT NULL,
-  `waktu` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `riwayat_pembayaran`
---
-
-INSERT INTO `riwayat_pembayaran` (`id_riwayat`, `id_mhs`, `nim`, `bulan`, `tahun`, `tagihan`, `status`, `waktu`) VALUES
-(1, 1, '2021903430042', '12', '2023', 450000, 'berhasil', '2023-12-18 00:08:14');
+INSERT INTO `penghuni` (`id_penghuni`, `id_kamar`, `id_mhs`, `waktu`, `status_huni`) VALUES
+(6, 1, 1, '2023-12-20 20:49:41', 'active');
 
 -- --------------------------------------------------------
 
@@ -163,23 +133,23 @@ INSERT INTO `riwayat_pembayaran` (`id_riwayat`, `id_mhs`, `nim`, `bulan`, `tahun
 --
 
 CREATE TABLE `tagihan` (
-  `id_tagihan` int(25) NOT NULL,
-  `id_mhs` int(15) NOT NULL,
-  `nim` varchar(15) NOT NULL,
-  `bulan` varchar(25) NOT NULL,
-  `tahun` varchar(25) NOT NULL,
+  `id_tagihan` int(15) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `bulan` int(15) NOT NULL,
+  `tahun` int(15) NOT NULL,
   `tagihan` int(15) NOT NULL,
-  `status` varchar(25) NOT NULL,
-  `konfirmasi` varchar(15) DEFAULT NULL
+  `tgl_tagih` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(50) NOT NULL DEFAULT 'non_active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tagihan`
 --
 
-INSERT INTO `tagihan` (`id_tagihan`, `id_mhs`, `nim`, `bulan`, `tahun`, `tagihan`, `status`, `konfirmasi`) VALUES
-(1, 1, '1234', '12', '2023', 450000, 'sudah', 'false'),
-(2, 1, '1234', '1', '2024', 200000, 'belum', 'false');
+INSERT INTO `tagihan` (`id_tagihan`, `nama`, `bulan`, `tahun`, `tagihan`, `tgl_tagih`, `status`) VALUES
+(1, 'Tagihan 1', 1, 2024, 200000, '2023-12-21 02:13:24', 'non_active'),
+(2, 'Tagihan 2', 6, 2024, 450000, '2023-12-21 02:33:26', 'non_active'),
+(6, 'Tagihannn', 2, 2024, 500000, '2023-12-21 06:46:09', 'active');
 
 -- --------------------------------------------------------
 
@@ -188,21 +158,23 @@ INSERT INTO `tagihan` (`id_tagihan`, `id_mhs`, `nim`, `bulan`, `tahun`, `tagihan
 --
 
 CREATE TABLE `user` (
-  `id_user` int(15) NOT NULL,
-  `nama_user` varchar(100) NOT NULL,
-  `nomor_identitas` varchar(50) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `level` varchar(25) NOT NULL DEFAULT 'pengeloa',
-  `password` varchar(255) NOT NULL
+  `id_user` int(11) NOT NULL,
+  `nama_user` varchar(255) DEFAULT NULL,
+  `nomor_identitas` int(15) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `level` varchar(20) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `foto` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `nama_user`, `nomor_identitas`, `username`, `level`, `password`) VALUES
-(6, 'Lukmanul Hakim', '123', 'admin', 'pengelola', '123'),
-(7, ' Siswa 2 ', '1234', ' Siswa 2 ', 'mahasiswa', 'hh');
+INSERT INTO `user` (`id_user`, `nama_user`, `nomor_identitas`, `username`, `level`, `password`, `foto`) VALUES
+(2, 'Admin', 123, 'Admin', 'admin', '123', '1626bd4109665165.jpg'),
+(3, 'Pengelola', 111, 'pengelola', 'pengelola', '111', ''),
+(7, 'Lukmanull Hakim', 2147483647, 'Lukmanull Hakim', 'mahasiswa', '123', '');
 
 --
 -- Indexes for dumped tables
@@ -218,36 +190,35 @@ ALTER TABLE `kamar`
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`id_mhs`);
+  ADD PRIMARY KEY (`id_mhs`),
+  ADD UNIQUE KEY `nim` (`nim`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`);
 
 --
 -- Indexes for table `penghuni`
 --
 ALTER TABLE `penghuni`
   ADD PRIMARY KEY (`id_penghuni`),
-  ADD UNIQUE KEY `id_mhs` (`id_mhs`),
-  ADD KEY `id_kamar` (`id_kamar`);
-
---
--- Indexes for table `riwayat_pembayaran`
---
-ALTER TABLE `riwayat_pembayaran`
-  ADD PRIMARY KEY (`id_riwayat`),
-  ADD KEY `id_mhs` (`id_mhs`),
-  ADD KEY `nim` (`nim`);
+  ADD KEY `id_kamar` (`id_kamar`),
+  ADD KEY `id_mhs` (`id_mhs`);
 
 --
 -- Indexes for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  ADD PRIMARY KEY (`id_tagihan`),
-  ADD KEY `id_mhs` (`id_mhs`);
+  ADD PRIMARY KEY (`id_tagihan`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -257,37 +228,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id_kamar` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_kamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mhs` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `penghuni`
 --
 ALTER TABLE `penghuni`
-  MODIFY `id_penghuni` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `riwayat_pembayaran`
---
-ALTER TABLE `riwayat_pembayaran`
-  MODIFY `id_riwayat` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_penghuni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_tagihan` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

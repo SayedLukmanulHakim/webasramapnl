@@ -21,6 +21,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+
+  <!-- DATATABLES -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DATATABLES -->
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -83,7 +90,7 @@
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0" id="myTable">
                   <thead class="text-center">
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
@@ -93,13 +100,14 @@
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Usename</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Password</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Foto</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                     </tr>
                   </thead>
                   <tbody class="text-center">
                     <?php
                     $no = 1;
-                    $kueri = mysqli_query($conn, "SELECT * FROM user");
+                    $kueri = mysqli_query($conn, "SELECT * FROM user WHERE level NOT LIKE 'mahasiswa'");
                     while ($row = mysqli_fetch_array($kueri)) {
                       ?>
                       <tr>
@@ -134,6 +142,13 @@
                           <?php echo $row['password']; ?>
                         </td>
                         <td>
+                          <img src="images/<?php if ($row['foto'] != '') {
+                            echo $row['foto'];
+                          } else {
+                            echo 'nul-avatar.png';
+                          } ?>" width="60" height="60" class="rounded" alt="">
+                        </td>
+                        <td>
                           <!-- Aksi -->
                           <a href="edit_pengelola.php" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
@@ -145,12 +160,21 @@
 
                   </tbody>
                 </table>
+
+                <script>
+                  $(document).ready(function () {
+                    $('#myTable').DataTable();
+                  });
+                </script>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

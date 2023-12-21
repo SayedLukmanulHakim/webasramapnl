@@ -11,9 +11,9 @@ $row = mysqli_fetch_array($kueri);
 if ($cek > 0) {
     $_SESSION['nomor_identitas'] = $row['nomor_identitas'];
     $_SESSION['nama_user'] = $row['nama_user'];
-    $_SESSION['nomor_identitas'] = $row['nomor_identitas'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['level'] = $row['level'];
+    $_SESSION['foto'] = $row['foto'];
 
     $level = $row['level'];
     if ($level == 'admin') {

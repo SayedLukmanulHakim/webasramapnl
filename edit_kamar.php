@@ -130,20 +130,14 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
                   <label for="" class="col-form-label ps-4 col-sm-3">Kapasitas</label>
                   <div class="input-group input-group-outline">
-                    <input type="number" value="<?php echo $row['kapasitas'] ?>" min="1" name="kapasitas"
-                      class="form-control" placeholder="Kapasitas / orang..." onfocus="focused(this)"
+                    <input type="number" value="<?php echo $row['kapasitas'] ?>" min="<?php echo $row['kapasitas'] ?>"
+                      name="kapasitas" class="form-control" placeholder="Kapasitas / orang..." onfocus="focused(this)"
                       onfocusout="defocused(this)">
                   </div>
 
                 </div>
 
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
-                  <label for="" class="col-form-label ps-4 col-sm-3">Tarif / Semester</label>
-                  <div class="input-group input-group-outline">
-                    <input type="text" name="tarif" value="<?php echo $row['tarif'] ?>" class="form-control"
-                      onfocus="focused(this)" onfocusout="defocused(this)" placeholder="Tarif / Semester...">
-                  </div>
-                </div>
+
 
                 <div class="m-3 mt-5 d-flex">
                   <input type="submit" value="EDIT DATA" class="btn btn-warning">

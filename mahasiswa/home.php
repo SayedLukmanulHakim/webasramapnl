@@ -5,9 +5,9 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Mahasiswa</li>
+                <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Home</li>
             </ol>
-            <h6 class="font-weight-bolder mb-0">Mahasiswa</h6>
+            <h6 class="font-weight-bolder mb-0">Home</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -36,6 +36,26 @@
 </nav>
 <!-- End Navbar -->
 
+
+<?php
+$kueri1 = mysqli_query($conn, "SELECT * FROM tagihan");
+$num1 = mysqli_num_rows($kueri1);
+
+$nim = $_SESSION['nomor_identitas'];
+$kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE nim = $nim");
+$row = mysqli_fetch_array($kueri2);
+$num2 = mysqli_num_rows($kueri2);
+
+$idmhs = $row['id_mhs'];
+$kueri3 = mysqli_query($conn, "SELECT * FROM pembayaran WHERE id_mhs = $idmhs");
+$num3 = mysqli_num_rows($kueri3);
+
+
+$belum_bayar = $num1 - $num3;
+$sudah_bayar = $num3;
+
+?>
+
 <!-- Isi Body -->
 <div class="container-fluid py-4">
     <div class="row">
@@ -48,7 +68,9 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">Belum Bayar</p>
-                        <h1 class="mb-0">2</h1>
+                        <h1 class="mb-0">
+                            <?php echo $belum_bayar; ?>
+                        </h1>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -65,7 +87,9 @@
                     </div>
                     <div class="text-end pt-1">
                         <p class="text-sm mb-0 text-capitalize">Sudah Bayar</p>
-                        <h1 class="mb-0">6</h1>
+                        <h1 class="mb-0">
+                            <?php echo $sudah_bayar; ?>
+                        </h1>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
@@ -74,7 +98,7 @@
             </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6">
+        <!--   <div class="col-xl-3 col-sm-6">
             <div class="card">
                 <div class="card-header p-3 pt-2">
                     <div
@@ -90,7 +114,7 @@
                 <div class="card-footer p-3">
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
     </div>

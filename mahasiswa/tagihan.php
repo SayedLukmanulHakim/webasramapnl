@@ -41,9 +41,9 @@
     <div class="col-12">
       <div class="card my-4">
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-warning shadow-primary border-radius-lg pt-4 pb-3">
-            <div class="d-flex justify-content-between">
-              <h6 class="text-white text-capitalize ps-3">Data Tagihan</h6>
+          <div class="bg-gradient-warning shadow-warning border-radius-lg pt-4 pb-3">
+            <div class="d-flex justify-content-between ">
+              <h6 class="text-white text-capitalize ps-3">TAGIHAN AKTIF</h6>
             </div>
           </div>
         </div>
@@ -53,10 +53,13 @@
               <thead class="text-center">
                 <tr>
                   <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID tagihan</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama Tagihan</th>
                   <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan / Tahun</th>
                   <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Bayar</th>
-                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Konfirmasi</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tanggal tagih</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Pembayaran</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                   <!-- <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tanggal bayar</th> -->
                 </tr>
               </thead>
@@ -64,13 +67,23 @@
                 <?php
                 $no = 1;
                 $nim = $_SESSION['nomor_identitas'];
-                $kueri = mysqli_query($conn, "SELECT * FROM tagihan WHERE nim = $nim");
+                $kueri = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'active'");
                 while ($row = mysqli_fetch_array($kueri)) {
+                  $idmhs = $_SESSION['nomor_identitas'];
+                  $qq = mysqli_query($conn, "SELECT * FROM pembayaran WHERE id_mhs = $idmhs");
+                  $q = mysqli_fetch_array($qq);
+                  $cek = mysqli_num_rows($qq);
                   ?>
                   <tr>
                     <td>
                       <!-- No -->
                       <?php echo $no++; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['id_tagihan']; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['nama']; ?>
                     </td>
                     <td>
                       <!-- Bulan / Tahun -->
@@ -83,16 +96,26 @@
                     </td>
                     <td>
                       <!-- Status -->
-                      <?php echo $row['status']; ?>
+                      <?php echo $row['tgl_tagih']; ?>
                     </td>
                     <td>
                       <!-- Status -->
-                      <?php echo $row['konfirmasi']; ?>
-                    </td>
-                    <!--  <td>
-         
+                      <?php if ($cek <= 0) {
+                        echo 'Belum Bayar';
+                      } else {
+                        if ($q['status'] == 'confirmed') {
+                          echo 'Sudah Bayar';
+                        } else if ($q['status'] == 'pending') {
+                          echo 'Menunggu Konfirmasi';
+                        } else {
+                          echo 'Tidak dikonfirmasi';
+                        }
+                      }
 
-                    </td> -->
+                      ?>
+                    </td>
+                    <td><a href="#" data-bs-toggle="modal" data-bs-target="#ModalBayar"
+                        class="btn btn-sm btn-success">Bayar</a></td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -101,6 +124,119 @@
         </div>
       </div>
     </div>
+
+    <!-- MODAL BAYAR -->
+    <div class="modal fade" id="ModalBayar" tabindex="-1" aria-labelledby="ModalBayar" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Bayar Tagihan</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="#">
+              <input type="file" class="form-control">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-info">BAYAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- MODAL BAYAR -->
+
+
+    <!-- RIWAYAT TAGIHAN -->
+    <div class="col-12">
+      <div class="card my-4">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-secondary shadow-secondary border-radius-lg pt-4 pb-3">
+            <div class="d-flex justify-content-between ">
+              <h6 class="text-white text-capitalize ps-3">RIWAYAT TAGIHAN</h6>
+            </div>
+          </div>
+        </div>
+        <div class="card-body px-0 pb-2">
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="text-center">
+                <tr>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID tagihan</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama Tagihan</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan / Tahun</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tanggal tagih</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Pembayaran</th>
+                  <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
+                  <!-- <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tanggal bayar</th> -->
+                </tr>
+              </thead>
+              <tbody class="text-center">
+                <?php
+                $no = 1;
+                $nim = $_SESSION['nomor_identitas'];
+                $kueri = mysqli_query($conn, "SELECT * FROM tagihan");
+                while ($row = mysqli_fetch_array($kueri)) {
+                  $idmhs = $_SESSION['nomor_identitas'];
+                  $qq = mysqli_query($conn, "SELECT * FROM pembayaran WHERE id_mhs = $idmhs ");
+                  $q = mysqli_fetch_array($qq);
+                  $cek = mysqli_num_rows($qq);
+                  ?>
+                  <tr>
+                    <td>
+                      <!-- No -->
+                      <?php echo $no++; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['id_tagihan']; ?>
+                    </td>
+                    <td>
+                      <?php echo $row['nama']; ?>
+                    </td>
+                    <td>
+                      <!-- Bulan / Tahun -->
+                      <?php echo $row['bulan']; ?> /
+                      <?php echo $row['tahun']; ?>
+                    </td>
+                    <td>
+                      <!-- Tagihan -->
+                      <?php echo format_rupiah($row['tagihan']); ?>
+                    </td>
+                    <td>
+                      <!-- Status -->
+                      <?php echo $row['tgl_tagih']; ?>
+                    </td>
+                    <td>
+                      <!-- Status -->
+                      <?php if ($cek <= 0) {
+                        echo 'Belum Bayar';
+                      } else {
+                        if ($q['status'] == 'confirmed') {
+                          echo 'Sudah Bayar';
+                        } else if ($q['status'] == 'pending') {
+                          echo 'Menunggu Konfirmasi';
+                        } else {
+                          echo 'Tidak dikonfirmasi';
+                        }
+                      }
+                      ?>
+                    </td>
+                    <td>
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#ModalBayar"
+                        class="btn btn-sm btn-success">Bayar</a>
+                    </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- RIWAYAT TAGIHAN -->
   </div>
 </div>
 

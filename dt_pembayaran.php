@@ -20,6 +20,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+
+  <!-- DATATABLES -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DATATABLES -->
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -81,31 +88,44 @@
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 text-center">
+                <table class="table align-items-center mb-0 text-center " id="myTable">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID Pembayaran</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID Tagihan</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">NIM</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan/Tahun</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bukti Pembayaran</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                     </tr>
                   </thead>
                   <tbody class="text-center">
                     <?php
                     $no = 1;
-                    $kueri = mysqli_query($conn, "SELECT * FROM riwayat_pembayaran");
+                    $kueri = mysqli_query($conn, "SELECT * FROM pembayaran");
                     while ($row = mysqli_fetch_array($kueri)) {
                       $idmhs = $row['id_mhs'];
                       $kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id_mhs = $idmhs");
                       $row2 = mysqli_fetch_array($kueri2);
+
+                      $id_tagihan = $row['id_tagihan'];
+                      $kueri3 = mysqli_query($conn, "SELECT * FROM tagihan WHERE id_tagihan = $id_tagihan");
+                      $row3 = mysqli_fetch_array($kueri3);
                       ?>
                       <tr>
                         <td>
                           <!-- No -->
                           <?php echo $no++; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['id_pembayaran']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['id_tagihan']; ?>
                         </td>
                         <td>
                           <!-- Nama -->
@@ -117,35 +137,119 @@
                         </td>
                         <td>
                           <!-- Bulan / Tahun -->
-                          <?php echo $row['bulan']; ?>/
-                          <?php echo $row['tahun']; ?>
+                          <?php echo $row3['bulan']; ?> /
+                          <?php echo $row3['tahun']; ?>
                         </td>
                         <td>
                           <!-- Tagihan -->
-                          <?php echo format_rupiah($row['tagihan']); ?>
+                          <?php echo format_rupiah($row3['tagihan']); ?>
                         </td>
                         <td>
-                          <!-- status -->
-                          <?php echo $row['status']; ?>
+                          <?php if ($row['status'] == 'not_confirmed') { ?>
+                            <div class="bg-danger text-light rounded">
+                              <?php echo $row['status']; ?>
+                            </div>
+                          <?php } else { ?>
+                            <div class="bg-success text-light rounded">
+                              <?php echo $row['status']; ?>
+                            </div>
+                          <?php } ?>
                         </td>
+                        <td><a href="#" onclick="show_bukti('<?php echo $row['foto_bukti_pembayaran'] ?>')"
+                            data-bs-toggle="modal" data-bs-target="#ModalGambar" class="btn btn-sm btn-info">Lihat
+                            BUKTI</a></td>
                         <td>
                           <!-- Aksi -->
-                          <a href="#" class="btn btn-sm btn-warning">
-                            <i class="material-icons">edit</i>
-                            edit
-                          </a>
+
+                          <?php if ($row['status'] == 'confirmed') { ?>
+                            <a href="#" onclick="set(<?php echo $row['id_pembayaran']; ?>, 'not_confirmed')"
+                              class="btn btn-sm btn-danger">
+                              BATALKAN
+                            </a>
+                          <?php } else { ?>
+                            <a href="#" onclick="set(<?php echo $row['id_pembayaran']; ?>, 'confirmed')"
+                              class="btn btn-sm btn-success">
+                              KONFIRMASI
+                            </a>
+                          <?php } ?>
+
                         </td>
                       </tr>
                     <?php } ?>
                   </tbody>
                 </table>
+                <script>
+                  $(document).ready(function () {
+                    $('#myTable').DataTable();
+                  });
+                </script>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+
+    function set(id, status) {
+      let text = '';
+      if (status == 'confirmed') {
+        text = 'Konfirmasi';
+      } else {
+        text = 'Batalkan Konfirmasi';
+      }
+      Swal.fire({
+        title: "Info",
+        text: `${text} pembayaran ?`,
+        icon: "question",
+        showConfirmButton: true,
+        showCancelButton: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = `proses/konfirmasi_pembayaran.php?id=${id}&status=${status}`;
+        }
+      })
+
+    }
+
+    function show_bukti(namafile) {
+      let url = 'images/bukti_pembayaran/';
+      let imageUrl = `${url}${namafile}`;
+
+      // Set the image source and handle loading errors
+      let imgElement = document.getElementById('gambarBukti');
+      imgElement.src = imageUrl;
+      imgElement.onerror = function () {
+        alert('Failed to load the image. Please try again later.');
+      };
+    }
+  </script>
+
+  <!-- MODAL GAMBAR -->
+  <div class="modal" id="ModalGambar" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Bukti Pembayaran</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="" style="width:100%; height:auto;" id="gambarBukti" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL GAMBAR -->
+
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
       <i class="material-icons py-2">settings</i>

@@ -20,6 +20,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+
+
+  <!-- DATATABLES -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DATATABLES -->
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -79,7 +87,7 @@
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center mb-0 " id="myTable">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
@@ -216,16 +224,24 @@
                         </td>
                         <td>
                           <!-- Aksi -->
-                          <a href="edit_mahasiswa.php?id=<?php echo $row['semester'] ?>" class="btn btn-sm btn-warning">
+                          <a href="edit_mahasiswa.php?id=<?php echo $row['id_mhs'] ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
                             edit
                           </a>
+                          <a href="mahasiswa_kamar.php?id=<?php echo $row['id_mhs'] ?>" class="btn btn-sm btn-info"> <i
+                              class="material-icons">meeting_room
+                            </i> Kamar</a>
                         </td>
                       </tr>
                     <?php } ?>
                   </tbody>
                 </table>
               </div>
+              <script>
+                $(document).ready(function () {
+                  $('#myTable').DataTable();
+                });
+              </script>
             </div>
           </div>
         </div>

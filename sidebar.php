@@ -9,8 +9,13 @@
         <a class="navbar-brand m-0" href="#">
             <div class="row">
                 <div class="col-3">
-                    <img src="https://shanibacreative.com/wp-content/uploads/2020/06/membuat-foto-profil-yang-bagus.jpg"
-                        class="navbar-brand-img h-100" a l t="main_logo" style="aspect-ratio: 1/1; object-fit: cover" />
+
+                    <img src="images/<?php if ($_SESSION['foto'] != '') {
+                        echo $_SESSION['foto'];
+                    } else {
+                        echo 'nul-avatar.png';
+                    } ?>" class="navbar-brand-img h-100" a l t="main_logo"
+                        style="aspect-ratio: 1/1; object-fit: cover" />
                 </div>
                 <div class="col">
                     <span class="ms-1 font-weight-bold text-white">
@@ -107,19 +112,25 @@
                 </a>
 
             </li>
-            <li class="nav-item">
 
-                <a class="nav-link text-white
+
+            <?php if ($_SESSION['level'] != 'pengelola') { ?>
+                <li class="nav-item">
+
+                    <a class="nav-link text-white
             <?php if (isset($_GET['x']) && $_GET['x'] == 'kelola_user') {
                 echo "bg-gradient-warning";
             } ?>" href="index.php?x=kelola_user">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">manage_accounts</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Kelola User</span>
-                </a>
+                        <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="material-icons opacity-10">manage_accounts</i>
+                        </div>
+                        <span class="nav-link-text ms-1">Kelola User</span>
+                    </a>
 
-            </li>
+                </li>
+            <?php } ?>
+
+
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
             </li>

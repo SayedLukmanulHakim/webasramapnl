@@ -2,14 +2,9 @@
 include 'koneksi.php';
 
 $id = $_GET['id'];
-$konfirmasi = $_GET['konfirmasi'];
+$status = $_GET['status'];
 
-if ($konfirmasi == 'true') {
-    $kueri = mysqli_query($conn, "UPDATE tagihan SET konfirmasi = 'true' WHERE id_tagihan = $id");
-} else {
-    $kueri = mysqli_query($conn, "UPDATE tagihan SET konfirmasi = 'false' WHERE id_tagihan = $id");
-}
-header('location:../konfirmasi.php?x=konfirmasi');
-
+$kueri = mysqli_query($conn, "UPDATE pembayaran SET status = '$status' WHERE id_pembayaran = $id");
+header('location:../dt_pembayaran.php?x=pembayaran&status=' . $status);
 
 ?>

@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="./assets/img/logo.png" />
-  <title>Konfirmasi</title>
+  <title>Tagihan</title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -20,6 +20,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="./assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+
+  <!-- DATATABLES -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+  <!-- DATATABLES -->
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
@@ -36,9 +43,9 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Konfirmasi Pembayaran</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tagih Pembayaran</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Konfirmasi Pembayaran</h6>
+          <h6 class="font-weight-bolder mb-0">Tagih Pembayaran</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -67,6 +74,70 @@
     </nav>
     <!-- End Navbar -->
 
+
+
+    <?php
+    if (isset($_GET['add_tagihan'])) {
+      $nama = $_GET['nama'];
+      $bulan = $_GET['bulan'];
+      $tahun = $_GET['tahun'];
+      $tagihan = $_GET['tagihan'];
+
+
+      $kueri = mysqli_query($conn, "INSERT INTO tagihan (nama, bulan, tahun, tagihan) VALUES ('$nama', $bulan, $tahun, $tagihan)");
+      echo "<script>window.location.href = 'tagihan.php';</script>";
+
+    }
+    ?>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalTagih" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="GET">
+              <div class="input-group input-group-outline m-1">
+                <label class="form-label">Nama Kamar...</label>
+                <input type="text" name="nama" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"
+                  required>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group input-group-outline m-1">
+                    <label class="form-label">Bulan</label>
+                    <input type="number" min="1" name="bulan" class="form-control" required>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="input-group input-group-outline m-1">
+                    <label class="form-label">Tahun</label>
+                    <input type="number" min="1" name="tahun" class="form-control" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-group input-group-outline m-1">
+                <label class="form-label">Tagihan ...</label>
+                <input type="number" name="tagihan" class="form-control" required>
+              </div>
+
+              <input type="submit" class="btn btn-primary w-100 mt-3" name="add_tagihan" value="Tambah Tagihan">
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Isi Body -->
     <div class="container-fluid py-4">
       <div class="row">
@@ -74,22 +145,30 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-warning shadow-primary border-radius-lg pt-4 pb-3">
-                <div class="d-flex justify-content-between">
-                  <h6 class="text-white text-capitalize ps-3">Konfirmasi Pembayaran</h6>
+                <div class="row m-2">
+                  <div class="col-12">
+                    <h6 class="text-white text-capitalize ps-3">Tagih Pembayaran</h6>
+                  </div>
+                  <div class="col-12">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalTagih" class="btn btn-primary ">Tagih
+                      Pembayaran</a>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0 text-center">
+                <table class="table align-items-center mb-0 text-center" id="myTable">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan/Tahun</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID tagihan</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama Tagihan</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Bulan</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tahun</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tagihan</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Bayar</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status Konfirmasi</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tanggal Ditagih</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Status</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                     </tr>
                   </thead>
@@ -98,10 +177,11 @@
                     <?php
                     $no = 1;
                     $kueri = mysqli_query($conn, "SELECT * FROM tagihan");
+
+                    $kueri2 = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'active'");
+                    $cek2 = mysqli_num_rows($kueri2);
+
                     while ($row = mysqli_fetch_array($kueri)) {
-                      $idmhs = $row['id_mhs'];
-                      $kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id_mhs = $idmhs");
-                      $row2 = mysqli_fetch_array($kueri2);
                       ?>
                       <tr>
                         <td>
@@ -109,77 +189,101 @@
                           <?php echo $no++; ?>
                         </td>
                         <td>
-                          <!-- Nama -->
-                          <?php echo $row2['nama_mhs']; ?>
+                          <?php echo $row['id_tagihan']; ?>
                         </td>
                         <td>
-                          <!-- Bulan/Tahun -->
-                          <?php echo $row['bulan']; ?> /
+                          <?php echo $row['nama']; ?>
+                        </td>
+                        <td>
+                          <?php echo $row['bulan']; ?>
+                        </td>
+                        <td>
                           <?php echo $row['tahun']; ?>
                         </td>
                         <td>
-                          <!-- Tagihan -->
                           <?php echo format_rupiah($row['tagihan']); ?>
                         </td>
                         <td>
-                          <!-- Status -->
-                          <?php echo $row['status']; ?>
+                          <?php echo $row['tgl_tagih']; ?>
                         </td>
                         <td>
-                          <?php if ($row['konfirmasi'] == null || $row['konfirmasi'] == '') {
-                            echo '<div class="text-secondary">Belum Dikonfirmasi</div>';
-                          } else {
-                            if ($row['konfirmasi'] == 'true') {
-                              echo '<div class="text-success">Dikonfirmasi</div>';
-                            } else {
-                              echo '<div class="text-danger">Tidak Dikonfirmasi</div>';
-                            }
-                          } ?>
-                        </td>
-
-                        <td>
-                          <?php if ($row['konfirmasi'] == null || $row['konfirmasi'] == '') { ?>
-                            <div class="d-flex">
-                              <a href="proses/konfirmasi_pembayaran.php?id=<?php echo $row['id_tagihan']; ?>&konfirmasi=true"
-                                class="btn btn-sm btn-success">
-                                <i class="material-icons">done</i>
-                                Konfirmasi
-                              </a>
-
-                              <a href="proses/konfirmasi_pembayaran.php?id=<?php echo $row['id_tagihan']; ?>&konfirmasi=false"
-                                class="btn btn-sm btn-danger">
-                                <i class="material-icons">close</i>
-                                Tolak
-                              </a>
+                          <?php if ($row['status'] == 'non_active') { ?>
+                            <div class="bg-danger text-light rounded">
+                              <?php echo $row['status']; ?>
                             </div>
-                          <?php } else {
-                            if ($row['konfirmasi'] == 'true') { ?>
-                              <a href="proses/konfirmasi_pembayaran.php?id=<?php echo $row['id_tagihan']; ?>&konfirmasi=false"
-                                class="btn btn-sm btn-danger">
-                                <i class="material-icons">close</i>
-                                Batalkan
-                              </a>
-                            <?php } else { ?>
-                              <a href="proses/konfirmasi_pembayaran.php?id=<?php echo $row['id_tagihan']; ?>&konfirmasi=true"
-                                class="btn btn-sm btn-success">
-                                <i class="material-icons">done</i>
-                                Konfirmasi
-                              </a>
-                            <?php }
-                          } ?>
+                          <?php } else { ?>
+                            <div class="bg-success text-light rounded">
+                              <?php echo $row['status']; ?>
+                            </div>
+                          <?php } ?>
                         </td>
-
-
+                        <td>
+                          <?php if ($row['status'] == 'non_active') { ?>
+                            <?php if ($cek2 > 0) { ?>
+                              <a href="#" class="btn btn-sm btn-success" onclick="show()" disabled>AKTIFKAN</a>
+                            <?php } else { ?>
+                              <a onclick="set(<?php echo $row['id_tagihan']; ?>, 'active')"
+                                class="btn btn-sm btn-success">AKTIFKAN</a>
+                            <?php } ?>
+                          <?php } else { ?>
+                            <a onclick="set(<?php echo $row['id_tagihan']; ?>, 'non_active')"
+                              class="btn btn-sm btn-danger">NONAKTIFKAN</a>
+                          <?php } ?>
+                        </td>
                       </tr>
                     <?php } ?>
+
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+
+                      function set(id, status) {
+                        let text = '';
+                        if (status == 'active') {
+                          text = 'Aktifkan';
+                        } else {
+                          text = 'Nonaktifkan';
+                        }
+                        Swal.fire({
+                          title: "Info",
+                          text: `${text} penagihan ?`,
+                          icon: "question",
+                          showConfirmButton: true,
+                          showCancelButton: true
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.location.href = `proses/set_tagihan.php?id=${id}&status=${status}`;
+                          }
+                        })
+
+                      }
+
+                      function show() {
+                        Swal.fire({
+                          title: "Oops",
+                          text: "Terdapat tagihan lain yang sedang aktif",
+                          icon: "warning"
+                        });
+                      }
+                    </script>
+
                   </tbody>
                 </table>
+
+                <script>
+                  $(document).ready(function () {
+                    $('#myTable').DataTable();
+                  });
+                </script>
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

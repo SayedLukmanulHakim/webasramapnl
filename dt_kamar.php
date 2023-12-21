@@ -89,7 +89,6 @@
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Lantai</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kapasitas</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Tarif</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                     </tr>
                   </thead>
@@ -117,12 +116,6 @@
                           <?php echo $row['kapasitas'] ?>
                         </td>
                         <td>
-                          <!-- Tarif   -->
-                          <?php
-                          echo format_rupiah($row['tarif']);
-                          ?>
-                        </td>
-                        <td>
                           <!-- Aksi -->
                           <a href="edit_kamar.php?id=<?php echo $row['id_kamar'] ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
@@ -139,6 +132,8 @@
         </div>
       </div>
     </div>
+    <br>
+    <br>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">

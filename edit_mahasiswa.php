@@ -28,6 +28,7 @@
   <?php include 'sidebar.php'; ?>
   <!-- SIDEBAR -->
 
+
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
@@ -63,7 +64,7 @@
           </li>
         </ul>
       </div>
-      </div>
+
     </nav>
     <!-- End Navbar -->
 
@@ -74,17 +75,24 @@
           <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
               <div class="bg-gradient-warning shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Data Dashboard</h6>
+                <h5 class="text-white text-capitalize ps-3 text-center">EDIT DATA MAHASISWA</h5>
               </div>
             </div>
             <div class="card-body px-0 pb-2 m-3">
+
+              <?php
+              $id = $_GET['id'];
+
+              $query = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id_mhs = $id");
+              $row = mysqli_fetch_array($query);
+              ?>
+
               <!-- FORM -->
-              <form id="form" action="proses/proses_reg.php" method="post" enctype="multipart/form-data">
+              <form id="form" action="proses/proses_edit_mahasiswa.php" method="GET" enctype="multipart/form-data">
+
+                <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
 
                 <!-- DATA DIRI -->
-                <div class="alert alert-dark text-center">
-                  <strong class="text-white">Register Asrama Politeknik Negeri Lhokseumawe</strong>
-                </div>
                 <div class="alert alert-warning">
                   <strong class="text-white">Data Diri</strong>
                 </div>
@@ -93,15 +101,16 @@
                   <div class="col-sm-7">
                     <label for="" class="col-form-label me-3">Nama Lengkap :</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Lengkap" required />
+                      <input type="text" name="nama" value="<?php echo $row['nama_mhs'] ?>" class="form-control"
+                        placeholder="Masukan Nama Lengkap" />
                     </div>
                   </div>
 
                   <div class="col-sm-5">
                     <label for="" class="col-form-label me-3">NIM :</label>
                     <div class="input-group input-group-outline">
-                      <input type="number" name="nim" class="form-control" placeholder="Masukan Nomor NIK / NIM"
-                        required />
+                      <input type="number" name="nim" value="<?php echo $row['nim'] ?>" class="form-control"
+                        placeholder="Masukan Nomor NIK / NIM" />
                     </div>
                   </div>
                 </div>
@@ -110,23 +119,26 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Tempat Lahir :</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" name="tempat_lahir" class="form-control" placeholder="Masukan Tempat Lahir"
-                        required />
+                      <input type="text" name="tempat_lahir" value="<?php echo $row['tempat'] ?>" class="form-control"
+                        placeholder="Masukan Tempat Lahir" />
                     </div>
                   </div>
 
                   <div class="col-sm-3">
                     <label for="" class="col-form-label me-3">Tanggal Lahir :</label>
                     <div class="input-group input-group-outline">
-                      <input type="date" name="tanggal_lahir" class="form-control" required />
+                      <input type="date" name="tanggal_lahir" value="<?php echo $row['tgl_lahir'] ?>"
+                        class="form-control" />
                     </div>
                   </div>
 
                   <div class="col-sm-5">
                     <label for="" class="col-form-label me-3">Jenis Kelamin :</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="jk" required>
-                        <option>Pilih</option>
+                      <select class="form-control" name="jk" value="<?php echo $row['jk'] ?>">
+                        <option value="<?php echo $row['jk'] ?>">
+                          <?php echo $row['jk'] ?>
+                        </option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </select>
@@ -138,8 +150,10 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Kewarganegaraan :</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="kewarganegaraan" required>
-                        <option>Pilih</option>
+                      <select class="form-control" name="kewarganegaraan" value="<?php echo $row['kewarganegaraan'] ?>">
+                        <option value="<?php echo $row['kewarganegaraan'] ?>">
+                          <?php echo $row['kewarganegaraan'] ?>
+                        </option>
                         <option value="Warga Negara Indonesia">Warga Negara Indonesia</option>
                         <option value="Warga Negara Asing">Warga Negara Asing</option>
                       </select>
@@ -149,8 +163,10 @@
                   <div class="col-sm-3">
                     <label for="" class="col-form-label me-3">Agama :</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="agama" required>
-                        <option>Pilih</option>
+                      <select class="form-control" name="agama" value="<?php echo $row['agama'] ?>">
+                        <option value="<?php echo $row['agama'] ?>">
+                          <?php echo $row['agama'] ?>
+                        </option>
                         <option value="Islam">Islam</option>
                         <option value="Kristen">Kristen</option>
                         <option value="Katolik">Katolik</option>
@@ -161,12 +177,7 @@
                     </div>
                   </div>
 
-                  <div class="col-sm-5">
-                    <label for="inputGroupFile02" class="col-form-label me-3">Upload Foto 3x6</label>
-                    <div class="input-group input-group-outline">
-                      <input type="file" name="upload_foto" class="form-control" placeholder="Foto 3x6" />
-                    </div>
-                  </div>
+
 
                 </div>
                 <div class="row">
@@ -174,21 +185,23 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Email :</label>
                     <div class="input-group input-group-outline">
-                      <input type="email" name="email" class="form-control" placeholder="Masukan Email" required />
+                      <input type="email" name="email" value="<?php echo $row['email'] ?>" class="form-control"
+                        placeholder="Masukan Email" />
                     </div>
                   </div>
-
+                  <!-- 
                   <div class="col-sm-3">
                     <label for="" class="col-form-label me-3">Password :</label>
                     <div class="input-group input-group-outline">
-                      <input type="password" name="password" class="form-control" placeholder="Isi Password" required />
+                      <input type="password" name="password" class="form-control" placeholder="Isi Password"   />
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="col-sm-5">
                     <label for="" class="col-form-label me-3">No Telp :</label>
                     <div class="input-group input-group-outline">
-                      <input type="tel" name="no_telp" class="form-control" placeholder="Masukan No Telp" required />
+                      <input type="tel" name="no_telp" value="<?php echo $row['no_hp'] ?>" class="form-control"
+                        placeholder="Masukan No Telp" />
                     </div>
                   </div>
                 </div>
@@ -203,23 +216,24 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Nama Orang Tua / Wali :</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" name="nama_ortu" class="form-control"
-                        placeholder="Masukan Nama Orang Tua / Wali" required />
+                      <input type="text" name="nama_ortu" value="<?php echo $row['ortu'] ?>" class="form-control"
+                        placeholder="Masukan Nama Orang Tua / Wali" />
                     </div>
                   </div>
 
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Nomor Telp Orang Tua / Wali :</label>
                     <div class="input-group input-group-outline">
-                      <input type="tel" name="nomor_ortu" class="form-control"
-                        placeholder="Masukan Nomor Telephone Orang Tua / Wali" required />
+                      <input type="number" name="nomor_ortu" value="<?php echo $row['no_hp_ortu'] ?>"
+                        class="form-control" placeholder="Masukan Nomor Telephone Orang Tua / Wali" />
                     </div>
                   </div>
 
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Alamat Ortu:</label>
                     <div class="input-group input-group-outline">
-                      <textarea class="form-control" name="$alamatortu" rows="1" id="alamat" required></textarea>
+                      <textarea class="form-control" name="alamatortu" rows="2"
+                        id="alamat"><?php echo $row['alamat_ortu'] ?></textarea>
                     </div>
                   </div>
                 </div>
@@ -234,14 +248,16 @@
                   <div class="col-sm-6">
                     <label for="" class="col-form-label me-3">Alamat:</label>
                     <div class="input-group input-group-outline">
-                      <textarea class="form-control" name="alamat" rows="1" id="alamat" required></textarea>
+                      <textarea class="form-control" name="alamat" rows="2"
+                        id="alamat"><?php echo $row['alamat'] ?></textarea>
                     </div>
                   </div>
 
                   <div class="col-sm-6">
                     <label for="" class="col-form-label me-3">Kode Pos:</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" name="kode_pos" class="form-control" placeholder="Kode Pos" required />
+                      <input type="text" name="kode_pos" value="<?php echo $row['kode_pos'] ?>" class="form-control"
+                        placeholder="Kode Pos" />
                     </div>
                   </div>
                 </div>
@@ -250,13 +266,16 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Provinsi:</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="provinsi" id="provinsi" required>
+                      <select class="form-control" name="provinsi" value="<?php echo $row['provinsi'] ?>" id="provinsi">
+                        <option value="<?php echo $row['provinsi'] ?>">
+                          <?php echo $row['provinsi'] ?>
+                        </option>
                         <!-- Kabupaten akan diload menggunakan ajax, dan ditampilkan disini -->
-                        <?php $row = open_json('provinsi.json');
+                        <?php $row2 = open_json('provinsi.json');
                         $index = 0;
-                        foreach ($row as $r) { ?>
-                          <option value="<?php echo $row[$index]['name'] ?>">
-                            <?php echo $row[$index++]['name'] ?>
+                        foreach ($row2 as $r) { ?>
+                          <option value="<?php echo $row2[$index]['name'] ?>">
+                            <?php echo $row2[$index++]['name'] ?>
                           </option>
                         <?php }
                         ?>
@@ -268,14 +287,14 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Kabupaten:</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" class="form-control" name="kabupaten" required>
+                      <input type="text" class="form-control" name="kabupaten" value="<?php echo $row['kabupaten'] ?>">
                     </div>
                   </div>
 
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Kecamatan:</label>
                     <div class="input-group input-group-outline">
-                      <input type="text" class="form-control" name="kecamatan" required>
+                      <input type="text" class="form-control" name="kecamatan" value="<?php echo $row['kecamatan'] ?>">
                     </div>
                   </div>
                 </div>
@@ -289,7 +308,10 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Pendidikan Terakhir:</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="pendidikan" required>
+                      <select class="form-control" name="pendidikan" value="<?php echo $row['pendidikan'] ?>">
+                        <option value="<?php echo $row['pendidikan'] ?>">
+                          <?php echo $row['pendidikan'] ?>
+                        </option>
                         <option value="SMA">SMA</option>
                         <option value="SMK">SMK</option>
                         <option value="MA">MA</option>
@@ -300,8 +322,8 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Nama Sekolah:</label>
                     <div class="input-group input-group-outline">
-                      <input type=" text" name="sekolah" class="form-control" placeholder="Masukan Nama Sekolah"
-                        required />
+                      <input type=" text" name="sekolah" value="<?php echo $row['nama_sekolah'] ?>" class="form-control"
+                        placeholder="Masukan Nama Sekolah" />
                     </div>
                   </div>
                 </div>
@@ -316,7 +338,10 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Pilih Jurusan</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="jurusan" required>
+                      <select class="form-control" name="jurusan" value="<?php echo $row['jurusan'] ?>">
+                        <option value="<?php echo $row['jurusan'] ?>">
+                          <?php echo $row['jurusan'] ?>
+                        </option>
                         <option value="Teknologi Informasi dan Komputer">Teknologi Informasi dan Komputer</option>
                         <option value="Teknik Mesin">Teknik Mesin</option>
                         <option value="Teknik Elektro">Teknik Elektro</option>
@@ -330,7 +355,11 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Semester</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="semester" required>
+                      <select class="form-control" name="semester" value="<?php echo $row['semester'] ?>">
+                        <option value="<?php echo $row['semester'] ?>">
+                          Semester
+                          <?php echo $row['semester'] ?>
+                        </option>
                         <option value="1">Semester 1</option>
                         <option value="2">Semester 2</option>
                         <option value="3">Semester 3</option>
@@ -346,7 +375,10 @@
                   <div class="col-sm-4">
                     <label for="" class="col-form-label me-3">Pilih Program Studi</label>
                     <div class="input-group input-group-outline">
-                      <select class="form-control" name="prodi" required>
+                      <select class="form-control" name="prodi" value="<?php echo $row['prodi'] ?>">
+                        <option value="<?php echo $row['prodi'] ?>">
+                          <?php echo $row['prodi'] ?>
+                        </option>
                         <!-- TIK -->
                         <option value="D4 - Teknologi Rekayasa Komputer Jaringan">D4 - Teknologi Rekayasa Komputer
                           Jaringan
@@ -406,352 +438,33 @@
                   </div>
                   <!-- END DATA JURUSAN -->
 
+
+
                   <div class="row">
                     <div class="col-sm-5 mt-4">
-                      <button type="submit" name="Submit" id="Submit" class="btn btn-success me-5">Daftar</button>
-                      <button type="reset" class="btn btn-primary">Reset</button>
+                      <button type="submit" name="Submit" id="Submit" class="btn btn-warning me-5">EDIT DATA</button>
                     </div>
                   </div>
               </form>
+
               <!-- FORM -->
             </div>
+
+
           </div>
         </div>
       </div>
     </div>
   </main>
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="material-icons py-2">settings</i>
-    </a>
-    <div class="card shadow-lg">
-      <div class="card-header pb-0 pt-3">
-        <div class="float-start">
-          <h5 class="mt-3 mb-0">Material UI Configurator</h5>
-          <p>See our dashboard options.</p>
-        </div>
-        <div class="float-end mt-4">
-          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-            <i class="material-icons">clear</i>
-          </button>
-        </div>
-        <!-- End Toggle Button -->
-      </div>
-      <hr class="horizontal dark my-1" />
-      <div class="card-body pt-sm-3 pt-0">
-        <!-- Sidebar Backgrounds -->
-        <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
-        </div>
-        <a href="javascript:void(0)" class="switch-trigger background-color">
-          <div class="badge-colors my-2 text-start">
-            <span class="badge filter bg-gradient-primary active" data-color="primary"
-              onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-          </div>
-        </a>
-        <!-- Sidenav Type -->
-        <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
-        </div>
-        <div class="d-flex">
-          <button class="btn bg-gradient-dark px-3 mb-2 active" data-class="bg-gradient-dark"
-            onclick="sidebarType(this)">Dark</button>
-          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-transparent"
-            onclick="sidebarType(this)">Transparent</button>
-          <button class="btn bg-gradient-dark px-3 mb-2 ms-2" data-class="bg-white"
-            onclick="sidebarType(this)">White</button>
-        </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-        <!-- Navbar Fixed -->
-        <div class="mt-3 d-flex">
-          <h6 class="mb-0">Navbar Fixed</h6>
-          <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)" />
-          </div>
-        </div>
-        <hr class="horizontal dark my-3" />
-        <div class="mt-2 d-flex">
-          <h6 class="mb-0">Light / Dark</h6>
-          <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)" />
-          </div>
-        </div>
-        <hr class="horizontal dark my-sm-4" />
-        <a class="btn btn-outline-dark w-100" href="">View documentation</a>
-      </div>
-    </div>
-  </div>
+
   <!--   Core JS Files   -->
   <script src="./assets/js/core/popper.min.js"></script>
   <script src="./assets/js/core/bootstrap.min.js"></script>
   <script src="./assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="./assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="./assets/js/plugins/chartjs.min.js"></script>
-  <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
-        datasets: [
-          {
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderRadius: 4,
-            borderSkipped: false,
-            backgroundColor: "rgba(255, 255, 255, .8)",
-            data: [50, 20, 10, 22, 50, 10, 40],
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: "rgba(255, 255, 255, .2)",
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-              color: "#fff",
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: "rgba(255, 255, 255, .2)",
-            },
-            ticks: {
-              display: true,
-              color: "#f8f9fa",
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-        },
-      },
-    });
 
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: "rgba(255, 255, 255, .2)",
-            },
-            ticks: {
-              display: true,
-              color: "#f8f9fa",
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5],
-            },
-            ticks: {
-              display: true,
-              color: "#f8f9fa",
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-        },
-      },
-    });
-
-    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
-
-    new Chart(ctx3, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0,
-            borderWidth: 0,
-            pointRadius: 5,
-            pointBackgroundColor: "rgba(255, 255, 255, .8)",
-            pointBorderColor: "transparent",
-            borderColor: "rgba(255, 255, 255, .8)",
-            borderWidth: 4,
-            backgroundColor: "transparent",
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        interaction: {
-          intersect: false,
-          mode: "index",
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5],
-              color: "rgba(255, 255, 255, .2)",
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: "#f8f9fa",
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5],
-            },
-            ticks: {
-              display: true,
-              color: "#f8f9fa",
-              padding: 10,
-              font: {
-                size: 14,
-                weight: 300,
-                family: "Roboto",
-                style: "normal",
-                lineHeight: 2,
-              },
-            },
-          },
-        },
-      },
-    });
-  </script>
-  <script>
-    var win = navigator.platform.indexOf("Win") > -1;
-    if (win && document.querySelector("#sidenav-scrollbar")) {
-      var options = {
-        damping: "0.5",
-      };
-      Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
-    }
-  </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

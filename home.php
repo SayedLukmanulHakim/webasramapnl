@@ -76,8 +76,8 @@
         <?php
         $kueri1 = mysqli_query($conn, "SELECT * FROM kamar");
         $kueri2 = mysqli_query($conn, "SELECT * FROM mahasiswa");
-        $kueri3 = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'sudah'");
-        $kueri4 = mysqli_query($conn, "SELECT * FROM tagihan WHERE status = 'belum'");
+        $kueri3 = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status = 'confirmed'");
+        $kueri4 = mysqli_query($conn, "SELECT * FROM pembayaran WHERE status = 'not_confirmed'");
 
         $cek1 = mysqli_num_rows($kueri1);
         $cek2 = mysqli_num_rows($kueri2);

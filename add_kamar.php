@@ -23,6 +23,26 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-200">
+
+  <!-- ALERT -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <?php if (isset($_GET['status']) && $_GET['status'] == 'ditambahkan') { ?>
+    <script>
+      Swal.fire({
+        title: "Ditambah",
+        text: "Data berhasil ditambah",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'add_kamar.php';
+        }
+      });
+    </script>
+  <?php } ?>
+  <!-- ALERT -->
+
+
+
   <!-- SIDEBAR -->
   <?php include 'sidebar.php'; ?>
   <!-- SIDEBAR -->
@@ -106,7 +126,16 @@
                     <input type="number" min="1" name="kapasitas" class="form-control" onfocus="focused(this)"
                       onfocusout="defocused(this)">
                   </div>
+                </div>
 
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Jenis Kamar</label>
+                  <div class="input-group input-group-outline">
+                    <select name="jenis" id="jenis" required class="form-control">
+                      <option value="Laki Laki">Laki Laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">

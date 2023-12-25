@@ -172,7 +172,7 @@
                                                                 class="form-control" placeholder="Nama Lengkap" />
                                                             <a href="proses/hapus_pilih_kamar.php?idmhs=<?php echo $row['id_mhs'] ?>"
                                                                 class="btn btn-danger m-0">Hapus</a>
-                                                            <a href="#" onclick="tampil()"
+                                                            <a href="#tb_pilih" onclick="tampil()"
                                                                 class="btn btn-warning m-0">GANTI</a>
                                                         </div>
                                                     </div>

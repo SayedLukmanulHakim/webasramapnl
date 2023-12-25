@@ -134,7 +134,19 @@
                       name="kapasitas" class="form-control" placeholder="Kapasitas / orang..." onfocus="focused(this)"
                       onfocusout="defocused(this)">
                   </div>
+                </div>
 
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center my-2">
+                  <label for="" class="col-form-label ps-4 col-sm-3">Jenis Kamar</label>
+                  <div class="input-group input-group-outline">
+                    <select name="jenis" id="jenis" required class="form-control">
+                      <option value="<?php echo $row['jenis'] ?>">
+                        <?php echo $row['jenis'] ?>
+                      </option>
+                      <option value="Laki Laki">Laki Laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
                 </div>
 
 

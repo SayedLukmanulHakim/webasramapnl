@@ -231,6 +231,9 @@
                           <a href="mahasiswa_kamar.php?id=<?php echo $row['id_mhs'] ?>" class="btn btn-sm btn-info"> <i
                               class="material-icons">meeting_room
                             </i> Kamar</a>
+                          <a href="https://wa.me/<?php echo $row['no_hp'] ?>" target="_blank"
+                            class="btn btn-sm btn-success"> <i class="material-icons">chat
+                            </i> Chat</a>
                         </td>
                       </tr>
                     <?php } ?>

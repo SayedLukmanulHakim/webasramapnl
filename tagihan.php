@@ -96,13 +96,13 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Tagih Pembayaran</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <form action="" method="GET">
               <div class="input-group input-group-outline m-1">
-                <label class="form-label">Nama Kamar...</label>
+                <label class="form-label">Nama Tagihan</label>
                 <input type="text" name="nama" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)"
                   required>
               </div>
@@ -123,7 +123,7 @@
               </div>
 
               <div class="input-group input-group-outline m-1">
-                <label class="form-label">Tagihan ...</label>
+                <label class="form-label">Jumlah Tagihan</label>
                 <input type="number" name="tagihan" class="form-control" required>
               </div>
 
@@ -229,8 +229,54 @@
                             <a onclick="set(<?php echo $row['id_tagihan']; ?>, 'non_active')"
                               class="btn btn-sm btn-danger">NONAKTIFKAN</a>
                           <?php } ?>
+
+                          <a data-bs-toggle="modal" data-bs-target="#modalLihat<?php echo $row['id_tagihan']; ?>"
+                            class="btn btn-sm btn-info">LIHAT</a>
+
+
                         </td>
                       </tr>
+
+
+                      <!-- Modal LLIHAT -->
+                      <div class="modal fade" id="modalLihat<?php echo $row['id_tagihan']; ?>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Belum Membayar
+                              </h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="list-group" style="height:50vh; overflow:scroll;">
+                                <?php
+                                $i = 1;
+                                $tagihan = $row['id_tagihan'];
+                                $lihat = mysqli_query($conn, "SELECT * FROM mahasiswa WHERE id_mhs NOT IN (SELECT id_mhs FROM pembayaran WHERE id_tagihan = $tagihan)");
+                                while ($lihatt = mysqli_fetch_array($lihat)) {
+                                  ?>
+                                  <li href="#"
+                                    class="list-group-item list-group-item-action d-flex justify-content-between">
+                                    <div>
+                                      <?php echo $i++ . '. '; ?>
+                                      <?php echo $lihatt['nama_mhs']; ?> -
+                                      <?php echo $lihatt['nim']; ?>
+                                    </div> <a target="_blank" href="https://wa.me/<?php echo $lihatt['no_hp']; ?>"
+                                      class="btn btn-sm btn-success m-2">Chat</a>
+                                  </li>
+                                <?php } ?>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Modal LLIHAT -->
+
+
                     <?php } ?>
 
                     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

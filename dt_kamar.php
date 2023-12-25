@@ -87,8 +87,10 @@
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama Kamar</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Lantai</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kapasitas</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Jenis</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Aksi</th>
                     </tr>
                   </thead>
@@ -100,26 +102,32 @@
                       ?>
                       <tr>
                         <td>
-                          <!-- No -->
                           <?php echo $no++; ?>
                         </td>
                         <td>
-                          <!-- ID -->
                           <?php echo $row['id_kamar'] ?>
                         </td>
                         <td>
-                          <!-- Lantai -->
+                          <?php echo $row['nama_kamar'] ?>
+                        </td>
+                        <td>
                           <?php echo $row['lantai'] ?>
                         </td>
                         <td>
-                          <!-- Kapasitas   -->
                           <?php echo $row['kapasitas'] ?>
+                        </td>
+                        <td>
+                          <?php echo $row['jenis'] ?>
                         </td>
                         <td>
                           <!-- Aksi -->
                           <a href="edit_kamar.php?id=<?php echo $row['id_kamar'] ?>" class="btn btn-sm btn-warning">
                             <i class="material-icons">edit</i>
                             edit
+                          </a>
+                          <a href="lihat_kamar.php?id=<?php echo $row['id_kamar'] ?>" class="btn btn-sm btn-info">
+                            <i class="material-icons">visibility</i>
+                            Lihat
                           </a>
                         </td>
                       </tr>

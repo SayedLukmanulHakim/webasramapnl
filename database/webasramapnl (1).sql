@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 21, 2023 at 02:20 AM
+-- Generation Time: Dec 25, 2023 at 05:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `webasrama2`
+-- Database: `webasramapnl`
 --
 
 -- --------------------------------------------------------
@@ -32,6 +32,7 @@ CREATE TABLE `kamar` (
   `nama_kamar` varchar(50) DEFAULT NULL,
   `lantai` varchar(11) DEFAULT NULL,
   `kapasitas` int(11) DEFAULT NULL,
+  `jenis` varchar(20) NOT NULL DEFAULT 'Laki Laki',
   `full` varchar(15) DEFAULT 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,8 +40,9 @@ CREATE TABLE `kamar` (
 -- Dumping data for table `kamar`
 --
 
-INSERT INTO `kamar` (`id_kamar`, `nama_kamar`, `lantai`, `kapasitas`, `full`) VALUES
-(1, 'Kamar 1', 'Lantai 2', 4, 'false');
+INSERT INTO `kamar` (`id_kamar`, `nama_kamar`, `lantai`, `kapasitas`, `jenis`, `full`) VALUES
+(1, 'Kamar 1', 'Lantai 2', 4, 'Laki Laki', 'false'),
+(2, 'gg', 'Lantai 1', 4, 'Laki Laki', 'false');
 
 -- --------------------------------------------------------
 
@@ -81,7 +83,8 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`id_mhs`, `nim`, `nama_mhs`, `foto`, `tempat`, `tgl_lahir`, `jk`, `kewarganegaraan`, `agama`, `email`, `no_hp`, `kode_pos`, `alamat`, `provinsi`, `kabupaten`, `kecamatan`, `ortu`, `no_hp_ortu`, `alamat_ortu`, `pendidikan`, `nama_sekolah`, `jurusan`, `prodi`, `semester`, `id_kamar`) VALUES
-(2, 2147483647, 'Lukmanull Hakim', '8b5d97398afce603.jpg', 'Samalanga', '2023-12-21', 'Laki-laki', 'Warga Negara Indonesia', 'Islam', 'user@gmail.com', '0812', 'test', 'test', 'ACEH', 'Bireun', 'Samalanga', 'test', '123', 'test', 'SMK', 'STM', 'Teknologi Informasi dan Komputer', 'D4 - Teknologi Rekayasa Komputer Jaringan', 5, NULL);
+(1, 2147483647, 'Lukmanull Hakim', '8b5d97398afce603.jpg', 'Samalanga', '2023-12-21', 'Laki-laki', 'Warga Negara Indonesia', 'Islam', 'user@gmail.com', '6282369673751', 'test', 'test', 'ACEH', 'Bireun', 'Samalanga', 'test', '123', 'test', 'SMK', 'STM', 'Teknologi Informasi dan Komputer', 'D4 - Teknologi Rekayasa Komputer Jaringan', 5, NULL),
+(3, 123456, 'Muttawakil', NULL, NULL, '2023-12-12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +106,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id_pembayaran`, `id_tagihan`, `id_mhs`, `foto_bukti_pembayaran`, `waktu_pembayaran`, `status`) VALUES
-(6, 6, 2, '96f07b9ce5b0ed60.jpg', '2023-12-21 08:17:47', 'pending');
+(6, 6, 1, '96f07b9ce5b0ed60.jpg', '2023-12-21 08:17:47', 'not_confirmed');
 
 -- --------------------------------------------------------
 
@@ -228,13 +231,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `kamar`
 --
 ALTER TABLE `kamar`
-  MODIFY `id_kamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_kamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_mhs` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
@@ -246,13 +249,13 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `penghuni`
 --
 ALTER TABLE `penghuni`
-  MODIFY `id_penghuni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_penghuni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tagihan`
 --
 ALTER TABLE `tagihan`
-  MODIFY `id_tagihan` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_tagihan` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`

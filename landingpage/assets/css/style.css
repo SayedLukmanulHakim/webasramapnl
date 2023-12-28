@@ -335,7 +335,7 @@ h6,
   position: absolute;
   left: 50%;
   top: 0;
-  width: 130%;
+  width: 150%;
   height: 95%;
   background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6)), url("../img/hero-bg.jpg") center top no-repeat;
   z-index: 0;
@@ -477,8 +477,6 @@ h6,
   right: 0;
   bottom: 0;
   background: linear-gradient(to right, rgba(30, 67, 86, 0.8), rgba(30, 67, 86, 0.6)), url("../img/hero-bg.jpg") center top no-repeat;
-
-
 }
 
 #hero-no-slider p {

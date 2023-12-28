@@ -1,6 +1,4 @@
-<!-- Navbar -->
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur"
-    navbar-scroll="true">
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -62,8 +60,7 @@ $sudah_bayar = $num3;
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
                 <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-danger shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                    <div class="icon icon-lg icon-shape bg-gradient-danger shadow-success text-center border-radius-xl mt-n4 position-absolute">
                         <i class="material-icons opacity-10">credit_card_off</i>
                     </div>
                     <div class="text-end pt-1">
@@ -81,8 +78,7 @@ $sudah_bayar = $num3;
         <div class="col-xl-3 col-sm-6">
             <div class="card">
                 <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-success shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                    <div class="icon icon-lg icon-shape bg-gradient-success shadow-info text-center border-radius-xl mt-n4 position-absolute">
                         <i class="material-icons opacity-10">credit_card</i>
                     </div>
                     <div class="text-end pt-1">
@@ -97,27 +93,7 @@ $sudah_bayar = $num3;
                 </div>
             </div>
         </div>
-
-        <!--   <div class="col-xl-3 col-sm-6">
-            <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div
-                        class="icon icon-lg icon-shape bg-gradient-warning shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                        <i class="material-icons opacity-10">upload_file</i>
-                    </div>
-                    <div class="text-end pt-1">
-                        <p class="text-sm mb-0 text-capitalize">Bayar</p>
-                        <input type="file" value="struk Pembayaran" class="mt-5">
-                    </div>
-                </div>
-                <hr class="dark horizontal my-0">
-                <div class="card-footer p-3">
-                </div>
-            </div>
-        </div> -->
     </div>
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
     </div>
 </div>
-</div>
-<!-- End Body -->

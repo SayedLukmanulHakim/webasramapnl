@@ -16,7 +16,7 @@
                                             echo $foto_user;
                                         } else {
                                             echo 'nul-avatar.png';
-                                        } ?>" class="navbar-brand-img h-100" a l t="main_logo" style="aspect-ratio: 1/1; object-fit: cover" />
+                                        } ?>" class="navbar-brand-img h-100" a l t="main_logo" style="aspect-ratio: 1/1; object-fit: cover"/>
                 </div>
                 <div class="col">
                     <span class="ms-1 font-weight-bold text-white">

@@ -39,6 +39,21 @@
       });
     </script>
   <?php } ?>
+
+
+  <?php if (isset($_GET['status']) && $_GET['status'] == 'duplikat') { ?>
+    <script>
+      Swal.fire({
+        title: "Duplikat",
+        text: "<?php echo $_GET['nama'] ?> sudah ada",
+        icon: "warning"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'add_kamar.php';
+        }
+      });
+    </script>
+  <?php } ?>
   <!-- ALERT -->
 
 

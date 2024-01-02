@@ -87,7 +87,7 @@
                     <tr>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">No</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">ID</th>
-                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Nama Kamar</th>
+                      <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kode Kamar</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Lantai</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Kapasitas</th>
                       <th class="text-uppercase text-dark text-xxs font-weight-bolder">Jenis</th>

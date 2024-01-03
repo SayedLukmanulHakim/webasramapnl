@@ -41,6 +41,4 @@ if (isset($_SESSION['level'])) {
 }
 
 
-
-
 ?>

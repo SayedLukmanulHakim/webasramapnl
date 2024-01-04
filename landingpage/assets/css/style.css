@@ -557,13 +557,14 @@ section {
   left: calc(50% - 20px);
 }
 
+.section-title img {
+  border-radius: 10px 10px 10px 10px;
+}
+
 .section-title p {
   margin-bottom: 0;
 }
 
-.section-title img {
-  border-radius: 10px 10px 10px 10px;
-}
 
 /*--------------------------------------------------------------
 # Breadcrumbs
@@ -708,6 +709,14 @@ section {
 
 .services .icon-box-blue:hover {
   border-color: #2282ff;
+}
+
+.services .icon-box-yellow .icon i {
+  color: #e28f01;
+}
+
+.services .icon-box-yellow:hover {
+  border-color: #e28f01;
 }
 
 /*--------------------------------------------------------------
@@ -2289,3 +2298,4 @@ section {
 #footer .credits a {
   color: #a2cce3;
 }
+

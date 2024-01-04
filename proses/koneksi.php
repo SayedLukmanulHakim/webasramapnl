@@ -76,7 +76,7 @@ function uploadGambar($file, $url)
     }
 
     // Check file size
-    if ($file["size"] > 500000) {
+    if ($file["size"] > 5000000) {
         $pesanerror = "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -102,8 +102,3 @@ function uploadGambar($file, $url)
         }
     }
 }
-
-
-
-
-?>
